@@ -4,13 +4,14 @@ The official website of the Lawrenceville Math Club.
 
 # Development (Python 3.9)
 
-## Environment
+## Environment Setup
 
 ### macOS
 
 ```
 python3 -m venv venv
 source venv/bin/activate
+python3 -m pip install -r requirements.txt
 ```
 
 ### Windows
@@ -18,19 +19,6 @@ source venv/bin/activate
 ```
 py -m venv venv
 venv\Scripts\activate
-```
-
-## Dependencies
-
-### macOS
-
-```
-python3 -m pip install -r requirements.txt
-```
-
-### Windows
-
-```
 py -m pip install -r requirements.txt
 ```
 
