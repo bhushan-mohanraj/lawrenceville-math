@@ -13,12 +13,25 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
+### Windows
+
+```
+py -m venv venv
+venv\Scripts\activate
+```
+
 ## Dependencies
 
 ### macOS
 
 ```
 python3 -m pip install -r requirements.txt
+```
+
+### Windows
+
+```
+py -m pip install -r requirements.txt
 ```
 
 ## Environment Variables
