@@ -1,3 +1,6 @@
 # Python and Environment
 venv
 __pycache__
+
+# Editors
+.vscode
