@@ -14,4 +14,9 @@ def create_app():
         DATABASE_URL=os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3"),
     )
 
+    with app.app_context():
+        from .models import register_models
+
+        register_models(app)
+
     return app
