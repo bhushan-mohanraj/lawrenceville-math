@@ -16,7 +16,9 @@ def create_app():
 
     with app.app_context():
         from .models import register_models
+        from .views import register_views
 
         register_models(app)
+        register_views(app)
 
     return app
