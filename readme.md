@@ -4,6 +4,10 @@ The official website of the Lawrenceville Math Club.
 
 # Development (Python 3.9)
 
+## Notes
+
+- Currently, when working with SQLAlchemy, use https://docs.sqlalchemy.org/en/14/tutorial/index.html.
+
 ## Environment Setup
 
 ### macOS
