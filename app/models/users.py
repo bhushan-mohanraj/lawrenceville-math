@@ -2,6 +2,10 @@ from sqlalchemy import (
     Column,
     String,
 )
+from werkzeug.security import (
+    generate_password_hash,
+    check_password_hash,
+)
 
 from .base import Model
 
@@ -13,7 +17,18 @@ class User(Model):
         nullable=False,
     )
 
-    password = Column(
-        String(100),
+    password_hash = Column(
+        String(1000),
         nullable=False,
     )
+
+    @property
+    def password(self):
+        raise AttributeError("Password is hashed.")
+
+    @property.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
