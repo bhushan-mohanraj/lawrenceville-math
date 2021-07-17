@@ -1,4 +1,4 @@
-Flask==2.0.1
-SQLAlchemy==1.4.20
-WTForms==2.3.3
+Flask~=2.0.1
+SQLAlchemy~=1.4.20
+WTForms~=2.3.3
 black
