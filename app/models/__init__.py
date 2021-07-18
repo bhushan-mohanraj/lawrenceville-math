@@ -3,6 +3,10 @@ from .base import (
     db_session,
 )
 
+from .users import (
+    User,
+)
+
 
 def register_models(app):
     """Register the application models."""
