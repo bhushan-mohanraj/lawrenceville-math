@@ -22,12 +22,7 @@ class User(Model):
         nullable=False,
     )
 
-    @property
-    def password(self):
-        raise AttributeError("Password is hashed.")
-
-    @property.setter
-    def password(self, password):
+    def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
     def check_password(self, password):
