@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 
     <link href="https://rsms.me/inter/inter.css" rel="stylesheet">
     <style>
@@ -18,30 +18,44 @@
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container">
-                <a class="navbar-brand text-danger" href="/"><strong>The Lawrenceville Math Club</strong></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="menu">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Feed</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn btn-danger mx-2" href="/">Log In</a>
-                        </li>
-                    </ul>
+    <nav class="navbar is-white is-spaced" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item">
+                    <strong class="has-text-danger is-size-5">The Lawrenceville Math Club</strong>
+                </a>
+
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="menu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="menu" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item">
+                        Feed
+                    </a>
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-danger is-light">
+                                Log In
+                            </a>
+                            <a class="button is-danger">
+                                Register
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
     {% block content %}{% endblock %}
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
