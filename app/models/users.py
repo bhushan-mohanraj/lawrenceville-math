@@ -1,6 +1,7 @@
 from sqlalchemy import (
     Column,
     String,
+    Boolean,
 )
 from werkzeug.security import (
     generate_password_hash,
@@ -19,6 +20,12 @@ class User(Model):
 
     password_hash = Column(
         String(1000),
+        nullable=False,
+    )
+
+    staff = Column(
+        Boolean,
+        default=False,
         nullable=False,
     )
 
