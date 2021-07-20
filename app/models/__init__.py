@@ -1,6 +1,7 @@
 from .base import (
     Model,
     db_session,
+    db_engine,
 )
 
 from .users import (
