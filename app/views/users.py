@@ -1,9 +1,15 @@
 from flask import (
     Blueprint,
     render_template,
+    request,
+    session,
+    redirect,
+    url_for,
 )
 
 from .. import models, forms
+
+from sqlalchemy import select
 
 
 bp = Blueprint(
@@ -25,7 +31,24 @@ def login():
 
 @bp.route("/login/", methods=("POST",))
 def login_post():
-    ...
+    form = forms.LoginForm(request.form)
+
+    if form.validate():
+        email, password = form.email.data, form.password.data
+
+        user = models.db_session.execute(
+            select(models.User).where(models.User.email == email)
+        ).first()[0]
+
+        if user and user.check_password(password):
+            session["user_id"] = user.id
+
+            return redirect(url_for("main.index"))
+
+    return render_template(
+        "users/login.html",
+        form=form,
+    )
 
 
 @bp.route("/logout/")
