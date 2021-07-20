@@ -11,7 +11,7 @@ from .base import Model
 
 
 class User(Model):
-    username = Column(
+    email = Column(
         String(100),
         unique=True,
         nullable=False,
