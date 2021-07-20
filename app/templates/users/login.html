@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block navbar %}{% endblock %}
+
+{% block content %}
+<section class="hero is-fullheight">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-6-tablet is-4-desktop">
+                    <form class="box" action="{{ url_for('users.login') }}" method="POST">
+                        <h1 class="title has-text-danger has-text-centered mb-3 style=" margin-bottom: 0.5rem;">Log In
+                        </h1>
+                        <div class=" field">
+                            {{ form.email.label(class_="label") }}
+                            {{ form.email(class_="input") }}
+                        </div>
+                        <div class="field">
+                            {{ form.password.label(class_="label") }}
+                            {{ form.password(class_="input") }}
+                        </div>
+                        <div class="field">
+                            {{ form.submit(class_="button is-danger is-fullwidth") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
