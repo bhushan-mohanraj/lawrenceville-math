@@ -2,10 +2,11 @@ from wtforms import Form, fields, validators
 
 
 class LoginForm(Form):
-    username = fields.StringField(
-        "Username",
+    email = fields.StringField(
+        "Email",
         [
             validators.InputRequired(),
+            validators.Email(),
         ],
     )
 
