@@ -42,6 +42,18 @@
                 </div>
 
                 <div class="navbar-end">
+                    {% if g.user %}
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            {{ g.user.email }}
+                        </a>
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item" href="{{ url_for('users.logout') }}">
+                                <strong class="has-text-danger">Log Out</strong>
+                            </a>
+                        </div>
+                    </div>
+                    {% else %}
                     <div class="navbar-item">
                         <div class="buttons">
                             <a class="button is-danger is-light">
@@ -52,6 +64,7 @@
                             </a>
                         </div>
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
