@@ -5,6 +5,7 @@ from flask import (
     session,
     redirect,
     url_for,
+    g,
 )
 
 from .. import models, forms
@@ -17,6 +18,17 @@ bp = Blueprint(
     __name__,
     url_prefix="/users",
 )
+
+
+@bp.before_app_request
+def load_user():
+    if "user_id" in session:
+        g.user = models.db_session.get(
+            models.User,
+            session["user_id"],
+        ).first()[0]
+    else:
+        g.user = None
 
 
 @bp.route("/login/", methods=("GET",))
