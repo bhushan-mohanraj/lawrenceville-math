@@ -26,7 +26,7 @@ def load_user():
         g.user = models.db_session.get(
             models.User,
             session["user_id"],
-        ).first()[0]
+        )
     else:
         g.user = None
 
