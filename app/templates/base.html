@@ -18,58 +18,58 @@
 </head>
 
 <body>
-    {% block navbar %}
-
-    <nav class="navbar is-white" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item">
-                <strong class="has-text-danger is-size-5">The Lawrenceville Math Club</strong>
-            </a>
-
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="menu">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
-
-        <div id="menu" class="navbar-menu">
-            <div class="navbar-start">
+    {% block header %}
+    <header>
+        <nav class="navbar is-white" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
                 <a class="navbar-item">
-                    Feed
+                    <strong class="has-text-danger is-size-5">The Lawrenceville Math Club</strong>
+                </a>
+
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="menu">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
                 </a>
             </div>
 
-            <div class="navbar-end">
-                {% if g.user %}
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">
-                        {{ g.user.email }}
+            <div id="menu" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item">
+                        Feed
                     </a>
+                </div>
 
-                    <div class="navbar-dropdown">
-                        <a class="navbar-item" href="{{ url_for('users.logout') }}">
-                            <strong class="has-text-danger">Log Out</strong>
+                <div class="navbar-end">
+                    {% if g.user %}
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            {{ g.user.email }}
                         </a>
+
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item" href="{{ url_for('users.logout') }}">
+                                <strong class="has-text-danger">Log Out</strong>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                {% else %}
-                <div class="navbar-item">
-                    <div class="buttons">
-                        <a class="button is-danger is-light" href="{{ url_for('users.login') }}">
-                            Log In
-                        </a>
-                        <a class="button is-danger">
-                            Register
-                        </a>
+                    {% else %}
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-danger is-light" href="{{ url_for('users.login') }}">
+                                Log In
+                            </a>
+                            <a class="button is-danger">
+                                Register
+                            </a>
+                        </div>
                     </div>
+                    {% endif %}
                 </div>
-                {% endif %}
             </div>
-        </div>
-    </nav>
-
-    {% endblock navbar %}
+        </nav>
+    </header>
+    {% endblock header %}
 
     {% block content %}{% endblock %}
 
