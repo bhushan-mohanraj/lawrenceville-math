@@ -8,9 +8,8 @@
         <div class="container">
             <div class="columns is-centered">
                 <div class="column is-6-tablet is-4-desktop">
+                    <h1 class="title has-text-centered has-text-danger">Log In</h1>
                     <form class="box" action="{{ url_for('users.login') }}" method="POST">
-                        <h1 class="title has-text-danger has-text-centered mb-3 style=" margin-bottom: 0.5rem;">Log In
-                        </h1>
                         <div class=" field">
                             {{ form.email.label(class_="label") }}
                             {{ form.email(class_="input") }}
