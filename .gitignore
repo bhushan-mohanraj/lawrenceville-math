@@ -4,6 +4,7 @@ __pycache__
 
 # Editors
 .vscode
+.idea
 
 # App
 db.sqlite3
