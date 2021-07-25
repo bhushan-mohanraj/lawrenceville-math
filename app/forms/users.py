@@ -1,4 +1,4 @@
-from wtforms import Form, fields, validators
+from wtforms import Form, fields, validators, ValidationError
 
 
 class LoginForm(Form):
@@ -48,3 +48,7 @@ class RegistrationForm(Form):
     submit = fields.SubmitField(
         "Register",
     )
+
+    def validate_password_confirm(self, field):
+        if field.data != self.password.data:
+            raise ValidationError("The password confirmation must match with the password.")
