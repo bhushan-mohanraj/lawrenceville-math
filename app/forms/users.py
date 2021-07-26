@@ -42,13 +42,13 @@ class RegistrationForm(Form):
         "Confirm Password",
         [
             validators.InputRequired(),
+            validators.EqualTo(
+                "password",
+                message="Invalid password confirmation."
+            )
         ],
     )
 
     submit = fields.SubmitField(
         "Register",
     )
-
-    def validate_password_confirm(self, field):
-        if field.data != self.password.data:
-            raise ValidationError("The password confirmation must match with the password.")
