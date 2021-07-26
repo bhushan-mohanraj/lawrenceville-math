@@ -1,0 +1,25 @@
+{% macro render_fields(form) %}
+
+{% for field in form %}
+
+<div class="field">
+    {% if field.type == "SubmitField" %}
+        {{ field(class_="button is-danger is-fullwidth") }}
+    {% else %}
+        {{ field.label(class_="label") }}
+
+        {% if field.errors %}
+            {{ field(class_="input is-danger") }}
+
+            {% for error in field.errors %}
+                <p class="help is-danger">{{ error }}</p>
+            {% endfor %}
+        {% else %}
+            {{ field(class_="input") }}
+        {% endif %}
+    {% endif %}
+</div>
+
+{% endfor %}
+
+{% endmacro %}
