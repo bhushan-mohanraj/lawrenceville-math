@@ -50,12 +50,17 @@ def login_post():
 
         user = models.db_session.execute(
             select(models.User).where(models.User.email == email)
-        ).first()[0]
+        ).scalar()
 
-        if user and user.check_password(password):
-            session["user_id"] = user.id
+        if user:
+            if user.check_password(password):
+                session["user_id"] = user.id
 
-            return redirect(url_for("main.index"))
+                return redirect(url_for("main.index"))
+            else:
+                form.password.errors.append("Incorrect password.")
+        else:
+            form.email.errors.append("Incorrect email.")
 
     return render_template(
         "users/login.html",
