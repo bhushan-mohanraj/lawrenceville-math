@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% import "macros.html" as macros %}
+
 {% block header %}{% endblock %}
 
 {% block content %}
@@ -10,17 +12,7 @@
                 <div class="column is-6-tablet is-4-desktop">
                     <h1 class="title has-text-centered has-text-danger">Log In</h1>
                     <form class="box" action="{{ url_for('users.login') }}" method="POST">
-                        <div class=" field">
-                            {{ form.email.label(class_="label") }}
-                            {{ form.email(class_="input") }}
-                        </div>
-                        <div class="field">
-                            {{ form.password.label(class_="label") }}
-                            {{ form.password(class_="input") }}
-                        </div>
-                        <div class="field">
-                            {{ form.submit(class_="button is-danger is-fullwidth") }}
-                        </div>
+                        {{ macros.render_fields(form) }}
                     </form>
                 </div>
             </div>
