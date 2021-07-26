@@ -73,3 +73,44 @@ def logout():
     session.pop("user_id", None)
 
     return redirect(url_for("main.index"))
+
+
+@bp.route("/register/", methods=("GET",))
+def register():
+    form = forms.RegistrationForm()
+
+    return render_template(
+        "users/registration.html",
+        form=form,
+    )
+
+
+@bp.route("/register/", methods=("POST",))
+def register_post():
+    form = forms.RegistrationForm(request.form)
+
+    if form.validate():
+        email, password = form.email.data, form.password.data
+
+        user = models.db_session.execute(
+            select(models.User).where(models.User.email == email)
+        ).scalar()
+
+        if user:
+            form.email.errors.append("Taken email.")
+        else:
+            user = models.User(email=email)
+
+            user.set_password(password)
+
+            models.db_session.add(user)
+            models.db_session.commit()
+
+            session["user_id"] = user.id
+
+            return redirect(url_for("main.index"))
+
+    return render_template(
+        "users/registration.html",
+        form=form,
+    )
