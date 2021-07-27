@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% import "macros.html" as macros %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+<section class="hero is-fullheight">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-6-tablet is-4-desktop">
+                    <h1 class="title has-text-centered has-text-danger">Log In</h1>
+                    <form class="box" action="{{ url_for('users.login') }}" method="POST">
+                        {{ macros.render_fields(form) }}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

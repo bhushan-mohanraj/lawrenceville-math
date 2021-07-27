@@ -8,6 +8,10 @@ The official website of the Lawrenceville Math Club.
 
 - Currently, when working with SQLAlchemy, use https://docs.sqlalchemy.org/en/14/tutorial/index.html.
 
+### To Do
+
+- Create forms macro for general form rendering in templates.
+
 ## Environment Setup
 
 ### macOS

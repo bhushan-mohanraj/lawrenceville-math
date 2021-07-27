@@ -4,7 +4,10 @@ from flask import (
 )
 
 
-bp = Blueprint("main", __name__)
+bp = Blueprint(
+    "main",
+    __name__,
+)
 
 
 @bp.route("/")
