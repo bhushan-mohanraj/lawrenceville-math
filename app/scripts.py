@@ -6,9 +6,18 @@ def create_db():
 
 
 def create_users():
-    user = models.User(email="b@b.com")
+    user = models.User(email="staff@staff.com")
 
-    user.set_password("b")
+    user.staff = True
+
+    user.set_password("staff")
+
+    models.db_session.add(user)
+    models.db_session.commit()
+
+    user = models.User(email="user@user.com")
+
+    user.set_password("user")
 
     models.db_session.add(user)
     models.db_session.commit()
