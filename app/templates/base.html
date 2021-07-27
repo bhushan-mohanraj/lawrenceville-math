@@ -48,6 +48,11 @@
                         </a>
 
                         <div class="navbar-dropdown">
+                            {% if g.user.staff %}
+                            <a class="navbar-item">
+                                Staff
+                            </a>
+                            {% endif %}
                             <a class="navbar-item" href="{{ url_for('users.logout') }}">
                                 <strong class="has-text-danger">Log Out</strong>
                             </a>
