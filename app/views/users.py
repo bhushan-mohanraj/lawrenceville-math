@@ -60,7 +60,7 @@ def login_post():
             else:
                 form.password.errors.append("Incorrect password.")
         else:
-            form.email.errors.append("Incorrect email.")
+            form.email.errors.append("Incorrect email address.")
 
     return render_template(
         "users/login.html",
@@ -97,7 +97,7 @@ def register_post():
         ).scalar()
 
         if user:
-            form.email.errors.append("Taken email.")
+            form.email.errors.append("Taken email address.")
         else:
             user = models.User(email=email)
 
