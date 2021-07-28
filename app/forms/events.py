@@ -33,3 +33,10 @@ class EventForm(Form):
         ],
         choices=[(category, category.name) for category in models.Event.CategoryEnum],
     )
+
+    link = fields.StringField(
+        "Link",
+        [
+            validators.Length(max=1000),
+        ]
+    )
