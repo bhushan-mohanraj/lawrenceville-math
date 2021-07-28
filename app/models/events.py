@@ -34,3 +34,7 @@ class Event(Model):
         Enum(Category),
         nullable=False,
     )
+
+    link = Column(
+        String(1000),
+    )
