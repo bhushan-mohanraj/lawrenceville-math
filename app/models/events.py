@@ -26,12 +26,12 @@ class Event(Model):
         nullable=False,
     )
 
-    class Category(enum.Enum):
+    class CategoryEnum(enum.Enum):
         meeting = 1
         contest = 2
 
     category = Column(
-        Enum(Category),
+        Enum(CategoryEnum),
         nullable=False,
     )
 
