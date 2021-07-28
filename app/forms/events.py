@@ -41,5 +41,5 @@ class EventForm(Form):
         "Link",
         [
             validators.Length(max=1000),
-        ]
+        ],
     )
