@@ -31,7 +31,10 @@ class EventForm(Form):
         [
             validators.InputRequired(),
         ],
-        choices=[(category, category.name) for category in models.Event.CategoryEnum],
+        choices=[
+            (category.name, category.name.title())
+            for category in models.Event.CategoryEnum
+        ],
     )
 
     link = fields.StringField(
