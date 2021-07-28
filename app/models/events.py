@@ -13,7 +13,6 @@ from .base import Model
 class Event(Model):
     name = Column(
         String(100),
-        unique=True,
         nullable=False,
     )
 
