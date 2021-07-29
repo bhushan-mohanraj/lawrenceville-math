@@ -26,12 +26,13 @@ class Event(Model):
         nullable=False,
     )
 
-    class CategoryEnum(enum.Enum):
-        meeting = 1
-        contest = 2
+    MEETING = "meeting"
+    CONTEST = "contest"
+
+    CATEGORY_CHOICES = [MEETING, CONTEST]
 
     category = Column(
-        Enum(CategoryEnum),
+        Enum(*CATEGORY_CHOICES),
         nullable=False,
     )
 
