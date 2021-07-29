@@ -26,6 +26,7 @@ class Event(Model):
         nullable=False,
     )
 
+    # The choices for the event category.
     MEETING = "meeting"
     CONTEST = "contest"
 
