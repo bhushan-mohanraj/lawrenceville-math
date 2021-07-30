@@ -32,8 +32,7 @@ class EventForm(Form):
             validators.InputRequired(),
         ],
         choices=[
-            (category, category.title())
-            for category in models.Event.CATEGORY_CHOICES
+            (category, category.title()) for category in models.Event.CATEGORY_CHOICES
         ],
     )
 
