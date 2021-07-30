@@ -1,6 +1,7 @@
 from . import (
     main,
     users,
+    events,
 )
 
 
@@ -9,3 +10,4 @@ def register_views(app):
 
     app.register_blueprint(main.bp)
     app.register_blueprint(users.bp)
+    app.register_blueprint(events.bp)
