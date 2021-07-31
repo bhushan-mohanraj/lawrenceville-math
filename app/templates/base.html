@@ -8,20 +8,15 @@
     <title>The Lawrenceville Math Club</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
-    <link href="https://rsms.me/inter/inter.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
 </head>
 
 <body>
     {% block header %}
     <header>
-        <nav class="navbar is-white is-spaced" style="border-bottom: solid 2px whitesmoke"
-             role="navigation" aria-label="main navigation">
+        <nav class="navbar is-white is-spaced" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="{{ url_for('main.index') }}">
                     <strong class="has-text-danger is-size-5">The Lawrenceville Math Club</strong>
