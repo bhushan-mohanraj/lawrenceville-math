@@ -60,15 +60,13 @@
                         </div>
                     </div>
                     {% else %}
-                    <div class="navbar-item" style="margin-top: -0.5rem;">
-                        <div class="buttons">
-                            <a class="button is-danger is-light mb-0" href="{{ url_for('users.login') }}">
-                                Log In
-                            </a>
-                            <a class="button is-danger mb-0" href="{{ url_for('users.register') }}">
-                                Register
-                            </a>
-                        </div>
+                    <div class="navbar-item">
+                        <a class="navbar-item" href="{{ url_for('users.login') }}">
+                            <strong class="has-text-danger">Log In</strong>
+                        </a>
+                        <a class="navbar-item" href="{{ url_for('users.register') }}">
+                            <strong class="has-text-danger">Register</strong>
+                        </a>
                     </div>
                     {% endif %}
                 </div>
