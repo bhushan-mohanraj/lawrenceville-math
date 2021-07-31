@@ -50,14 +50,12 @@
                         </div>
                     </div>
                     {% else %}
-                    <div class="navbar-item">
-                        <a class="navbar-item" href="{{ url_for('users.login') }}">
-                            <strong class="has-text-danger">Log In</strong>
-                        </a>
-                        <a class="navbar-item" href="{{ url_for('users.register') }}">
-                            <strong class="has-text-danger">Register</strong>
-                        </a>
-                    </div>
+                    <a class="navbar-item" href="{{ url_for('users.login') }}">
+                        <strong class="has-text-danger">Log In</strong>
+                    </a>
+                    <a class="navbar-item" href="{{ url_for('users.register') }}">
+                        <strong class="has-text-danger">Register</strong>
+                    </a>
                     {% endif %}
                 </div>
             </div>
