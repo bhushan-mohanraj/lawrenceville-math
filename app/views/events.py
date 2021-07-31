@@ -5,6 +5,10 @@ from flask import (
 
 from .. import models, forms
 
+from ..decorators import (
+    user_required,
+)
+
 from sqlalchemy import select
 
 
@@ -16,6 +20,7 @@ bp = Blueprint(
 
 
 @bp.route("/")
+@user_required
 def index():
     events = [row[0] for row in models.db_session.execute(select(models.Event)).all()]
 
