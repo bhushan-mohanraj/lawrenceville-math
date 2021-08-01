@@ -8,6 +8,10 @@ from .users import (
     User,
 )
 
+from .events import (
+    Event,
+)
+
 
 def register_models(app):
     """Register the application models."""

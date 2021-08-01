@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from . import models
 
 
@@ -20,4 +22,17 @@ def create_users():
     user.set_password("user")
 
     models.db_session.add(user)
+    models.db_session.commit()
+
+
+def create_events():
+    event = models.Event(
+        name="Event",
+        start=datetime(2021, 1, 1),
+        end=datetime(2021, 1, 2),
+    )
+
+    event.category = event.MEETING
+
+    models.db_session.add(event)
     models.db_session.commit()

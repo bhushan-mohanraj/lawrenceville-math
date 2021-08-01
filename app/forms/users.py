@@ -42,10 +42,7 @@ class RegistrationForm(Form):
         "Confirm Password",
         [
             validators.InputRequired(),
-            validators.EqualTo(
-                "password",
-                message="Invalid password confirmation."
-            )
+            validators.EqualTo("password", message="Invalid password confirmation."),
         ],
     )
 
