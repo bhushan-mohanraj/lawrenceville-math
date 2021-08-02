@@ -3,25 +3,34 @@
 {% for field in form %}
 
 {% if field.type == "SubmitField" %}
-    <div class="d-grid">
-        {{ field(class_="btn btn-danger") }}
-    </div>
+
+<div class="d-grid">
+    {{ field(class_="btn btn-danger") }}
+</div>
+
 {% else %}
-    <div class="mb-3">
-        {{ field.label(class_="form-label") }}
 
-        {% if field.errors %}
-            {{ field(class_="form-control is-invalid") }}
+<div class="mb-3">
+    {{ field.label(class_="form-label") }}
 
-            {% for error in field.errors %}
-                <div class="invalid-feedback">{{ error }}</div>
-            {% endfor %}
-        {% else %}
-            {{ field(class_="form-control") }}
-        {% endif %}
-    </div>
+    {% if field.errors %}
+
+    {{ field(class_="form-control is-invalid") }}
+
+    {% for error in field.errors %}
+
+    <div class="invalid-feedback">{{ error }}</div>
+
+    {% endfor %}
+
+    {% else %}
+
+    {{ field(class_="form-control") }}
+
+    {% endif %}
+</div>
+
 {% endif %}
-
 
 {% endfor %}
 
