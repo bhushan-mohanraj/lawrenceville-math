@@ -7,7 +7,7 @@
 
     <title>The Lawrenceville Math Club</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
@@ -16,47 +16,43 @@
 <body>
     {% block header %}
     <header>
-        <nav class="navbar is-white is-spaced" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-                <a class="navbar-item" href="{{ url_for('main.index') }}">
-                    <strong class="has-text-danger is-size-5">The Lawrenceville Math Club</strong>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url_for('main.index') }}">
+                    The Lawrenceville Math Club
                 </a>
 
-                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="menu">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div id="menu" class="navbar-menu">
-                <div class="navbar-start">
-                    <a class="navbar-item" href="{{ url_for('events.index') }}">
-                        Events
-                    </a>
-                </div>
-
-                <div class="navbar-end">
-                    {% if g.user %}
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link">
-                            {{ g.user.email }}
-                        </a>
-
-                        <div class="navbar-dropdown">
-                            <a class="navbar-item" href="{{ url_for('users.logout') }}">
-                                <strong class="has-text-danger">Log Out</strong>
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('events.index') }}">Events</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        {% if not g.user %}
+                        <li class="nav-item">
+                            <a class="btn btn-outline-warning" href="{{ url_for('users.login') }}">
+                                Log In
                             </a>
-                        </div>
-                    </div>
-                    {% else %}
-                    <a class="navbar-item" href="{{ url_for('users.login') }}">
-                        <strong class="has-text-danger">Log In</strong>
-                    </a>
-                    <a class="navbar-item" href="{{ url_for('users.register') }}">
-                        <strong class="has-text-danger">Register</strong>
-                    </a>
-                    {% endif %}
+                        </li>
+                        {% else %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link active dropdown-toggle" id="dropdown" role="button"
+                                data-bs-toggle="dropdown">
+                                {{ g.user.email }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for('users.logout') }}">Log Out</a>
+                                </li>
+                            </ul>
+                        </li>
+                        {% endif %}
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -65,23 +61,7 @@
 
     {% block content %}{% endblock %}
 
-    {# From https://bulma.io/documentation/components/navbar/#navbar-burger #}
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-            if ($navbarBurgers.length > 0) {
-                $navbarBurgers.forEach(el => {
-                    el.addEventListener('click', () => {
-                        const target = el.dataset.target;
-                        const $target = document.getElementById(target);
-
-                        el.classList.toggle('is-active');
-                        $target.classList.toggle('is-active');
-                    });
-                });
-            }
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
