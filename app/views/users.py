@@ -31,21 +31,11 @@ def load_user():
         g.user = None
 
 
-@bp.route("/login/", methods=("GET",))
+@bp.route("/login/", methods=("GET", "POST"))
 def login():
-    form = forms.LoginForm()
-
-    return render_template(
-        "users/login.html",
-        form=form,
-    )
-
-
-@bp.route("/login/", methods=("POST",))
-def login_post():
     form = forms.LoginForm(request.form)
 
-    if form.validate():
+    if request.method == "POST" and form.validate():
         email, password = form.email.data, form.password.data
 
         user = models.db_session.execute(
@@ -75,21 +65,11 @@ def logout():
     return redirect(url_for("main.index"))
 
 
-@bp.route("/register/", methods=("GET",))
+@bp.route("/register/", methods=("GET", "POST"))
 def register():
-    form = forms.RegistrationForm()
-
-    return render_template(
-        "users/registration.html",
-        form=form,
-    )
-
-
-@bp.route("/register/", methods=("POST",))
-def register_post():
     form = forms.RegistrationForm(request.form)
 
-    if form.validate():
+    if request.method == "POST" and form.validate():
         email, password = form.email.data, form.password.data
 
         user = models.db_session.execute(
