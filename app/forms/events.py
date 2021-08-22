@@ -54,5 +54,5 @@ class EventForm(Form):
     )
 
     submit = SubmitField(
-        "Create Event",
+        "Submit",
     )
