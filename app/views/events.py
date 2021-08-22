@@ -106,3 +106,14 @@ def update(id):
         event=event,
         form=form,
     )
+
+
+@bp.route("/delete/<int:id>/")
+@staff_required
+def delete(id):
+    event = models.db_session.get(models.Event, id)
+
+    models.db_session.delete(event)
+    models.db_session.commit()
+
+    return redirect(url_for(".index"))
