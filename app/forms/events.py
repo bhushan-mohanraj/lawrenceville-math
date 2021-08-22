@@ -25,6 +25,7 @@ class EventForm(Form):
         [
             validators.InputRequired(),
         ],
+        format=DATETIME_LOCAL_FORMAT,
     )
 
     end = DateTimeLocalField(
@@ -32,6 +33,7 @@ class EventForm(Form):
         [
             validators.InputRequired(),
         ],
+        format=DATETIME_LOCAL_FORMAT,
     )
 
     category = SelectField(

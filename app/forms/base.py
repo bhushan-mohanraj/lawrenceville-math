@@ -10,3 +10,6 @@ from wtforms.fields import (
 from wtforms.fields.html5 import (
     DateTimeLocalField,
 )
+
+# The default date format returned by the HTML% datetime field.
+DATETIME_LOCAL_FORMAT = "%Y-%m-%dT%H:%M"
