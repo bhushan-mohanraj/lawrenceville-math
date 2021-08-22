@@ -25,11 +25,26 @@ bp = Blueprint(
 @bp.route("/")
 @user_required
 def index():
-    events = models.db_session.execute(select(models.Event)).scalars().all()
+    meetings = (
+        models.db_session.execute(
+            select(models.Event).filter_by(category=models.Event.MEETING)
+        )
+        .scalars()
+        .all()
+    )
+
+    contests = (
+        models.db_session.execute(
+            select(models.Event).filter_by(category=models.Event.CONTEST)
+        )
+        .scalars()
+        .all()
+    )
 
     return render_template(
         "events/index.html",
-        events=events,
+        meetings=meetings,
+        contests=contests,
     )
 
 
