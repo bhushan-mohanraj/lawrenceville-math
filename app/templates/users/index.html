@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Users</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email Address</th>
+                <th>Staff</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+
+            <tr {% if user.staff %} class="table-danger" {% endif %}>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ "Yes" if user.staff else "No" }}</td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% for user in users %}
+
+{% endfor %}
+
+{% endblock %}

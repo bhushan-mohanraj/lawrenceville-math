@@ -10,6 +10,8 @@ from flask import (
 
 from .. import models, forms
 
+from ..decorators import staff_required
+
 from sqlalchemy import select
 
 
@@ -29,6 +31,17 @@ def load_user():
         )
     else:
         g.user = None
+
+
+@bp.route("/")
+@staff_required
+def index():
+    users = models.db_session.execute(select(models.User)).scalars().all()
+
+    return render_template(
+        "users/index.html",
+        users=users,
+    )
 
 
 @bp.route("/login/", methods=("GET", "POST"))
