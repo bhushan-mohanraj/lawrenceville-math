@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+
+{% import "macros.html" as macros %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h1 class="d-flex justify-content-between align-items-center mb-3">Update Event</h1>
+
+    <form action="{{ url_for('events.update', id=event.id) }}" method="POST">
+        {{ macros.render_fields(form) }}
+    </form>
+</div>
+
+{% endblock %}

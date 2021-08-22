@@ -52,7 +52,39 @@ def create():
         return redirect(url_for(".index"))
 
     return render_template(
-        "events/form.html",
+        "events/create.html",
         form=form,
-        title="Create Event",
+    )
+
+
+@bp.route("/update/<int:id>/", methods=("GET", "POST"))
+def update(id):
+    event = models.db_session.get(models.Event, id)
+
+    if request.method == "GET":
+        form = forms.EventForm(
+            name=event.name,
+            start=event.start,
+            end=event.end,
+            category=event.category,
+            link=event.link,
+        )
+    else:
+        form = forms.EventForm(request.form)
+
+        if form.validate():
+            event.name = form.name.data
+            event.start = form.start.data
+            event.end = form.end.data
+            event.category = form.category.data
+            event.link = form.link.data
+
+            models.db_session.commit()
+
+            return redirect(url_for(".index"))
+
+    return render_template(
+        "events/update.html",
+        event=event,
+        form=form,
     )
