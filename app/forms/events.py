@@ -1,10 +1,18 @@
-from wtforms import Form, fields, validators
+from .base import (
+    Form,
+    validators,
+    StringField,
+    SelectField,
+    SubmitField,
+    DateTimeLocalField,
+    DATETIME_LOCAL_FORMAT,
+)
 
 from .. import models
 
 
 class EventForm(Form):
-    name = fields.StringField(
+    name = StringField(
         "Name",
         [
             validators.InputRequired(),
@@ -12,21 +20,21 @@ class EventForm(Form):
         ],
     )
 
-    start = fields.DateTimeField(
+    start = DateTimeLocalField(
         "Start",
         [
             validators.InputRequired(),
         ],
     )
 
-    end = fields.DateTimeField(
+    end = DateTimeLocalField(
         "End",
         [
             validators.InputRequired(),
         ],
     )
 
-    category = fields.SelectField(
+    category = SelectField(
         "Category",
         [
             validators.InputRequired(),
@@ -36,9 +44,13 @@ class EventForm(Form):
         ],
     )
 
-    link = fields.StringField(
+    link = StringField(
         "Link",
         [
             validators.Length(max=1000),
         ],
+    )
+
+    submit = SubmitField(
+        "Create Event",
     )
