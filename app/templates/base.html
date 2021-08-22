@@ -28,9 +28,21 @@
 
                 <div class="collapse navbar-collapse" id="menu">
                     <ul class="navbar-nav">
+                        {% if g.user %}
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('events.index') }}">Events</a>
                         </li>
+
+                        {% endif %}
+
+                        {% if g.user.staff %}
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('users.index') }}">Users</a>
+                        </li>
+
+                        {% endif %}
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         {% if not g.user %}
