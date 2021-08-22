@@ -2,14 +2,28 @@
 
 {% block content %}
 
-<div class="container mt-5">
-    <h1>Events</h1>
+<div class="container">
+    <h1 class="d-flex justify-content-between align-items-center mb-3">Events</h1>
 
     <div class="list-group">
         {% for event in events %}
 
         <div class="list-group-item">
-            <h2>{{ event.name }}</h2>
+            <h4 class="d-flex justify-content-between align-items-center mb-0">
+                <span class="d-flex align-items-center">
+                    <span class="badge bg-danger">{{ event.category.title() }}</span>
+                    <span class="ms-2">{{ event.name }}</span>
+                </span>
+
+                {% if g.user.staff %}
+
+                <span>
+                    <a type="button" class="btn btn-light" href="#1">Update</a>
+                    <a type="button" class="btn btn-danger" href="#1">Delete</a>
+                </span>
+
+                {% endif %}
+            </h4>
         </div>
 
         {% endfor %}
