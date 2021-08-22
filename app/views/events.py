@@ -1,6 +1,9 @@
 from flask import (
     Blueprint,
     render_template,
+    request,
+    redirect,
+    url_for,
 )
 
 from .. import models, forms
@@ -27,4 +30,28 @@ def index():
     return render_template(
         "events/index.html",
         events=events,
+    )
+
+
+@bp.route("/create/", methods=("GET", "POST"))
+def create():
+    form = forms.EventForm(request.form)
+
+    if request.method == "POST" and form.validate():
+        event = models.Event(
+            name=form.name.data,
+            start=form.start.data,
+            end=form.end.data,
+            category=form.category.data,
+            link=form.link.data,
+        )
+
+        models.db_session.add(event)
+        models.db_session.commit()
+
+        return redirect(url_for(".index"))
+
+    return render_template(
+        "events/create.html",
+        form=form,
     )
