@@ -16,11 +16,23 @@
         <tbody>
             {% for user in users %}
 
-            <tr {% if user.staff %} class="table-danger" {% endif %}>
+            {% if user.staff %}
+
+            <tr class="table-light">
                 <td>{{ user.id }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ "Yes" if user.staff else "No" }}</td>
+                <td>Yes</td>
             </tr>
+
+            {% else %}
+
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>No</td>
+            </tr>
+
+            {% endif %}
 
             {% endfor %}
         </tbody>
