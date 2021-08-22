@@ -52,6 +52,7 @@ def create():
         return redirect(url_for(".index"))
 
     return render_template(
-        "events/create.html",
+        "events/form.html",
         form=form,
+        title="Create Event",
     )
