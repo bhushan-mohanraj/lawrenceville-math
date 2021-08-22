@@ -8,6 +8,11 @@ from . import (
 def register_views(app):
     """Register the application views."""
 
-    app.register_blueprint(main.bp)
-    app.register_blueprint(users.bp)
-    app.register_blueprint(events.bp)
+    blueprints = [
+        main.bp,
+        users.bp,
+        events.bp,
+    ]
+
+    for blueprint in blueprints:
+        app.register_blueprint(blueprint)
