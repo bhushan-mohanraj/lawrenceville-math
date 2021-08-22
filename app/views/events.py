@@ -25,7 +25,7 @@ bp = Blueprint(
 @bp.route("/")
 @user_required
 def index():
-    events = [row[0] for row in models.db_session.execute(select(models.Event)).all()]
+    events = models.db_session.execute(select(models.Event)).scalars().all()
 
     return render_template(
         "events/index.html",
