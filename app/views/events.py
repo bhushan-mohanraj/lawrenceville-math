@@ -10,6 +10,7 @@ from .. import models, forms
 
 from ..decorators import (
     user_required,
+    staff_required,
 )
 
 from sqlalchemy import select
@@ -49,6 +50,7 @@ def index():
 
 
 @bp.route("/create/", methods=("GET", "POST"))
+@staff_required
 def create():
     form = forms.EventForm(request.form)
 
@@ -73,6 +75,7 @@ def create():
 
 
 @bp.route("/update/<int:id>/", methods=("GET", "POST"))
+@staff_required
 def update(id):
     event = models.db_session.get(models.Event, id)
 
