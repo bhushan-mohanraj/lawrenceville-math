@@ -8,3 +8,4 @@ __pycache__
 
 # App
 db.sqlite3
+main.py
