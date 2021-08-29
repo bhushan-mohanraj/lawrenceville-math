@@ -28,8 +28,10 @@ class Event(Model):
     MEETING = "meeting"
     CONTEST = "contest"
 
+    CATEGORY_CHOICES = [MEETING, CONTEST]
+
     category = Column(
-        Enum(MEETING, CONTEST),
+        Enum(*CATEGORY_CHOICES),
         nullable=False,
     )
 
