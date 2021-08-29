@@ -5,8 +5,6 @@ from sqlalchemy import (
     Enum,
 )
 
-import enum
-
 from .base import Model
 
 
