@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% import "macros.html" as macros %}
+
 {% block content %}
 
 <div class="d-flex justify-content-between align-items-center">
@@ -14,70 +16,40 @@
     {% endif %}
 </div>
 
-<h2>Meetings</h2>
+{% if events %}
 
-<div class="list-group">
-    {% if meetings %}
+{% for event in events %}
 
-    {% for meeting in meetings %}
+<div class="mt-2">
+    <h2 class="d-flex justify-content-between align-items-center">
+        <span class="fs-4">
+            <span class="badge bg-danger">{{ event.category.title() }}</span>
+            <span class="ms-1 align-middle">{{ event.name }}</span>
+        </span>
 
-    <div class="list-group-item">
-        <h4 class="d-flex justify-content-between align-items-center">
-            <span>
-                {{ meeting.name }}
-            </span>
+        {% if g.user.staff %}
 
-            {% if g.user.staff %}
+        <span>
+            <a type="button" class="btn btn-warning" href="{{ url_for('events.update', id=event.id) }}">Update</a>
+            <a type="button" class="btn btn-danger" href="{{ url_for('events.delete', id=event.id) }}">Delete</a>
+        </span>
 
-            <span>
-                <a type="button" class="btn btn-warning" href="{{ url_for('events.update', id=meeting.id) }}">Update</a>
-                <a type="button" class="btn btn-danger" href="{{ url_for('events.delete', id=meeting.id) }}">Delete</a>
-            </span>
+        {% endif %}
+    </h2>
 
-            {% endif %}
-        </h4>
-    </div>
-
-    {% endfor %}
-
-    {% else %}
-
-    No meetings are currently available.
-
-    {% endif%}
+    <ul>
+        <li><b>Start Date:</b> {{ macros.render_datetime(event.start) }}</li>
+        <li><b>End Date:</b> {{ macros.render_datetime(event.end) }}</li>
+        <li><b>Link:</b> <a href="{{ event.link }}">{{ event.link }}</a></li>
+    </ul>
 </div>
 
-<h2>Contests</h2>
+{% endfor %}
 
-<div class="list-group">
-    {% if contests %}
+{% else %}
 
-    {% for contest in contests %}
+No events are currently available.
 
-    <div class="list-group-item">
-        <h4 class="d-flex justify-content-between align-items-center">
-            <span>
-                {{ contest.name }}
-            </span>
-
-            {% if g.user.staff %}
-
-            <span>
-                <a type="button" class="btn btn-warning" href="{{ url_for('events.update', id=contest.id) }}">Update</a>
-                <a type="button" class="btn btn-danger" href="{{ url_for('events.delete', id=contest.id) }}">Delete</a>
-            </span>
-
-            {% endif %}
-        </h4>
-    </div>
-
-    {% endfor %}
-
-    {% else %}
-
-    No contests are currently available.
-
-    {% endif %}
-</div>
+{% endif%}
 
 {% endblock %}
