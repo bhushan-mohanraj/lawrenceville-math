@@ -2,45 +2,39 @@
 
 {% block content %}
 
-<div class="container">
-    <h1>Users</h1>
+<h1>Users</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Email Address</th>
-                <th>Staff</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for user in users %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Email Address</th>
+            <th>Staff</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
 
-            {% if user.staff %}
+        {% if user.staff %}
 
-            <tr class="table-light">
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>Yes</td>
-            </tr>
+        <tr class="table-light">
+            <td>{{ user.id }}</td>
+            <td>{{ user.email }}</td>
+            <td>Yes</td>
+        </tr>
 
-            {% else %}
+        {% else %}
 
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>No</td>
-            </tr>
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.email }}</td>
+            <td>No</td>
+        </tr>
 
-            {% endif %}
+        {% endif %}
 
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
-
-{% for user in users %}
-
-{% endfor %}
+        {% endfor %}
+    </tbody>
+</table>
 
 {% endblock %}
