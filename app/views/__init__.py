@@ -2,6 +2,7 @@ from . import (
     main,
     users,
     events,
+    tests,
 )
 
 
@@ -12,6 +13,7 @@ def register_views(app):
         main.bp,
         users.bp,
         events.bp,
+        tests.bp,
     ]
 
     for blueprint in blueprints:
