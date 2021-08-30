@@ -6,3 +6,7 @@ from .users import (
 from .events import (
     EventForm,
 )
+
+from .tests import (
+    TestForm,
+)
