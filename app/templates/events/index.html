@@ -16,11 +16,15 @@
     {% endif %}
 </div>
 
+{% for name, events in [("meetings", meetings), ("contests", contests)] %}
+
+<h2 class="my-2">{{ name.title() }}</h2>
+
 {% if events %}
 
 {% for event in events %}
 
-<div class="mt-2">
+<div class="my-2">
     <h2 class="d-flex justify-content-between align-items-center">
         <span class="fs-4">
             <span class="badge bg-primary">{{ event.category.title() }}</span>
@@ -53,8 +57,10 @@
 
 {% else %}
 
-No events are currently available.
+<p class="my-2">No {{ name }} are currently available.</p>
 
-{% endif%}
+{% endif %}
+
+{% endfor %}
 
 {% endblock %}

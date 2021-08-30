@@ -28,9 +28,19 @@ bp = Blueprint(
 def index():
     events = models.db_session.execute(select(models.Event)).scalars().all()
 
+    meetings = []
+    contests = []
+
+    for event in events:
+        if event.category == event.MEETING:
+            meetings.append(event)
+        elif event.category == event.CONTEST:
+            contests.append(event)
+
     return render_template(
         "events/index.html",
-        events=events,
+        meetings=meetings,
+        contests=contests,
     )
 
 
