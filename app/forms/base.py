@@ -2,6 +2,7 @@ from wtforms import Form, validators
 
 from wtforms.fields import (
     StringField,
+    IntegerField,
     PasswordField,
     SelectField,
     SubmitField,
