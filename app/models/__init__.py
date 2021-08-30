@@ -12,6 +12,12 @@ from .events import (
     Event,
 )
 
+from .tests import (
+    Test,
+    Problem,
+    Attempt,
+)
+
 
 def register_models(app):
     """Register the application models."""
