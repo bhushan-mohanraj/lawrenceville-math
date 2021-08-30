@@ -6,6 +6,9 @@ __pycache__
 .vscode
 .idea
 
-# App
+# Database
 db.sqlite3
-main.py
+
+# Static Files
+app/static/css
+app/static/bootstrap-5.1.0
