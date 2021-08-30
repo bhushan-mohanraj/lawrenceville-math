@@ -38,6 +38,7 @@ def create_tests():
         name="Test",
         start=datetime(2021, 1, 1),
         end=datetime(2021, 1, 2),
+        length=20,
         category=models.Test.PRACTICE,
     )
 
