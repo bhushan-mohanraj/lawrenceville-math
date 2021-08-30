@@ -12,7 +12,7 @@
 
         <div class="card mb-2">
             <div class="card-body">
-                <form action="{{ url_for('users.login') }}" method="POST">
+                <form method="POST">
                     {{ macros.render_fields(form) }}
                 </form>
             </div>
