@@ -1,14 +1,6 @@
-from .base import (
-    Form,
-    validators,
-    StringField,
-    SelectField,
-    SubmitField,
-    DateTimeLocalField,
-    DATETIME_LOCAL_FORMAT,
-)
-
 from .. import models
+
+from .base import *
 
 
 class EventForm(Form):

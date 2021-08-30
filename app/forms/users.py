@@ -1,8 +1,8 @@
-from wtforms import Form, fields, validators, ValidationError
+from .base import *
 
 
 class LoginForm(Form):
-    email = fields.StringField(
+    email = StringField(
         "Email",
         [
             validators.InputRequired(),
@@ -10,20 +10,20 @@ class LoginForm(Form):
         ],
     )
 
-    password = fields.PasswordField(
+    password = PasswordField(
         "Password",
         [
             validators.InputRequired(),
         ],
     )
 
-    submit = fields.SubmitField(
+    submit = SubmitField(
         "Log In",
     )
 
 
 class RegistrationForm(Form):
-    email = fields.StringField(
+    email = StringField(
         "Email",
         [
             validators.InputRequired(),
@@ -31,14 +31,14 @@ class RegistrationForm(Form):
         ],
     )
 
-    password = fields.PasswordField(
+    password = PasswordField(
         "Password",
         [
             validators.InputRequired(),
         ],
     )
 
-    password_confirm = fields.PasswordField(
+    password_confirm = PasswordField(
         "Confirm Password",
         [
             validators.InputRequired(),
@@ -46,6 +46,6 @@ class RegistrationForm(Form):
         ],
     )
 
-    submit = fields.SubmitField(
+    submit = SubmitField(
         "Register",
     )
