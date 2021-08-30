@@ -18,18 +18,15 @@
 
 {% for name, events in [("meetings", meetings), ("contests", contests)] %}
 
-<h2 class="my-2">{{ name.title() }}</h2>
+<h2>{{ name.title() }}</h2>
 
 {% if events %}
 
 {% for event in events %}
 
-<div class="my-2">
-    <h2 class="d-flex justify-content-between align-items-center">
-        <span class="fs-4">
-            <span class="badge bg-primary">{{ event.category.title() }}</span>
-            <span class="ms-1">{{ event.name }}</span>
-        </span>
+<div>
+    <h3 class="d-flex justify-content-between align-items-center">
+        {{ event.name }}
 
         {% if g.user.staff %}
 
@@ -39,7 +36,7 @@
         </span>
 
         {% endif %}
-    </h2>
+    </h3>
 
     <ul>
         <li><b>Start Date:</b> {{ macros.render_datetime(event.start) }}</li>
@@ -57,7 +54,7 @@
 
 {% else %}
 
-<p class="my-2">No {{ name }} are currently available.</p>
+<p>No {{ name }} are currently available.</p>
 
 {% endif %}
 
