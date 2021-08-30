@@ -40,9 +40,3 @@ class Event(Model):
     link = Column(
         String(1000),
     )
-
-    @property
-    def over(self) -> bool:
-        """
-        Whether the event is over.
-        """

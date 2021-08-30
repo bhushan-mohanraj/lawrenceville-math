@@ -20,6 +20,7 @@ class Test(Model):
         nullable=False,
     )
 
+    # The start and end of the test window.
     start = Column(
         DateTime,
         nullable=False,
@@ -27,6 +28,12 @@ class Test(Model):
 
     end = Column(
         DateTime,
+        nullable=False,
+    )
+
+    # The length of the test (in minutes).
+    length = Column(
+        Integer,
         nullable=False,
     )
 
@@ -40,18 +47,6 @@ class Test(Model):
         Enum(*CATEGORY_CHOICES),
         nullable=False,
     )
-
-    @property
-    def over(self) -> bool:
-        """
-        Whether the test is over.
-        """
-
-    @property
-    def length(self) -> int:
-        """
-        The length of the test in minutes.
-        """
 
 
 class Problem(Model):
