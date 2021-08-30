@@ -1,28 +1,42 @@
 {% macro render_fields(form) %}
-    {% for field in form %}
-        {% if field.type == "SubmitField" %}
-            <div class="d-grid">
-                {{ field(class_="btn btn-primary") }}
-            </div>
-        {% else %}
-            <div class="mb-3">
-                {{ field.label(class_="form-label") }}
 
-                {% if field.errors %}
-                    {{ field(class_="form-control is-invalid") }}
+{% for field in form %}
 
-                    {% for error in field.errors %}
-                        <div class="invalid-feedback">{{ error }}</div>
-                    {% endfor %}
-                {% else %}
-                    {{ field(class_="form-control") }}
-                {% endif %}
-            </div>
-        {% endif %}
+{% if field.type == "SubmitField" %}
+
+<div class="d-grid">
+    {{ field(class_="btn btn-primary") }}
+</div>
+
+{% else %}
+
+<div class="mb-3">
+    {{ field.label(class_="form-label") }}
+
+    {% if field.errors %}
+
+    {{ field(class_="form-control is-invalid") }}
+
+    {% for error in field.errors %}
+        <div class="invalid-feedback">{{ error }}</div>
     {% endfor %}
+
+    {% else %}
+
+    {{ field(class_="form-control") }}
+
+    {% endif %}
+</div>
+
+{% endif %}
+
+{% endfor %}
+
 {% endmacro %}
 
 
 {% macro render_datetime(datetime) %}
-    {{ datetime.strftime("%A, %B %d, %Y at %I:%m %p") }}
+
+{{ datetime.strftime("%A, %B %d, %Y at %I:%m %p") }}
+
 {% endmacro %}
