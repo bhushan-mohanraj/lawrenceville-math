@@ -64,7 +64,8 @@ def create():
         return redirect(url_for(".index"))
 
     return render_template(
-        "events/create.html",
+        "form.html",
+        title="Create Event",
         form=form,
     )
 
@@ -97,8 +98,8 @@ def update(id):
             return redirect(url_for(".index"))
 
     return render_template(
-        "events/update.html",
-        event=event,
+        "form.html",
+        title="Update Event",
         form=form,
     )
 
