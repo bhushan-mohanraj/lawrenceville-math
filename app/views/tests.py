@@ -49,7 +49,7 @@ def create():
         return redirect(url_for(".index"))
 
     return render_template(
-        "tests/form.html",
+        "form.html",
         title="Create Test",
         form=form,
     )
