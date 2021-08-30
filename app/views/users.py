@@ -107,3 +107,19 @@ def register():
         "users/registration.html",
         form=form,
     )
+
+
+@bp.route("/staff/<int:id>/")
+@staff_required
+def switch_staff(id):
+    """
+    Switch the staff status of a user.
+    """
+
+    user = models.db_session.get(models.User, id)
+
+    user.staff = not user.staff
+
+    models.db_session.commit()
+
+    return redirect(url_for(".index"))
