@@ -2,4 +2,16 @@
 
 {% block content %}
 
+<h1>The Lawrenceville Math Club</h1>
+
+{% if g.user %}
+
+<p class="text-muted">Welcome back, {{ g.user.email }}.</p>
+
+{% else %}
+
+<p class="text-muted">If you are a Lawrenceville student, you can <a href="{{ url_for('users.login') }}">log in</a> or <a href="{{ url_for('users.register') }}">register</a>.</p>
+
+{% endif %}
+
 {% endblock %}
