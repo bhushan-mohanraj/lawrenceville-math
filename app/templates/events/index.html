@@ -24,7 +24,7 @@
     <h2 class="d-flex justify-content-between align-items-center">
         <span class="fs-4">
             <span class="badge bg-primary">{{ event.category.title() }}</span>
-            <span class="ms-1 align-middle">{{ event.name }}</span>
+            <span class="ms-1">{{ event.name }}</span>
         </span>
 
         {% if g.user.staff %}
@@ -40,7 +40,12 @@
     <ul>
         <li><b>Start Date:</b> {{ macros.render_datetime(event.start) }}</li>
         <li><b>End Date:</b> {{ macros.render_datetime(event.end) }}</li>
+
+        {% if event.link %}
+
         <li><b>Link:</b> <a href="{{ event.link }}">{{ event.link }}</a></li>
+
+        {% endif %}
     </ul>
 </div>
 
