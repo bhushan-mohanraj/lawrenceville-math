@@ -32,6 +32,10 @@
                             <a class="nav-link" href="{{ url_for('events.index') }}">Events</a>
                         </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('tests.index') }}">Tests</a>
+                        </li>
+
                         {% endif %}
 
                         {% if g.user.staff %}
