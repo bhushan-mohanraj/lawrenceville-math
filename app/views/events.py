@@ -27,6 +27,7 @@ bp = Blueprint(
 @user_required
 def index():
     events = models.db_session.execute(select(models.Event)).scalars().all()
+    events = sorted(events, key=lambda event: event.start)
 
     meetings = []
     contests = []

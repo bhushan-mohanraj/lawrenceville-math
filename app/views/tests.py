@@ -23,6 +23,7 @@ bp = Blueprint(
 @user_required
 def index():
     tests = models.db_session.execute(select(models.Test)).scalars().all()
+    tests = sorted(tests, key=lambda test: test.start)
 
     return render_template(
         "tests/index.html",
