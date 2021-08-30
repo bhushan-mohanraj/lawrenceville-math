@@ -8,17 +8,13 @@ def create_db():
 
 
 def create_users():
-    user = models.User(email="staff@staff.com")
-
-    user.staff = True
-
+    user = models.User(email="staff@staff.com", staff=True)
     user.set_password("staff")
 
     models.db_session.add(user)
     models.db_session.commit()
 
     user = models.User(email="user@user.com")
-
     user.set_password("user")
 
     models.db_session.add(user)
@@ -30,9 +26,8 @@ def create_events():
         name="Event",
         start=datetime(2021, 1, 1),
         end=datetime(2021, 1, 2),
+        category=models.Event.MEETING,
     )
-
-    event.category = event.MEETING
 
     models.db_session.add(event)
     models.db_session.commit()
