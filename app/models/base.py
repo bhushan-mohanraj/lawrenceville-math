@@ -19,7 +19,7 @@ db_session = scoped_session(sessionmaker(bind=db_engine))
 class Model:
     @declared_attr
     def __tablename__(cls):
-        return cls.__name__.lower()
+        return cls.__name__
 
     id = Column(Integer, primary_key=True)
 
