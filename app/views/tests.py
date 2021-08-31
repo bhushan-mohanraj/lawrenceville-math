@@ -25,6 +25,10 @@ def index():
     tests = models.db_session.execute(select(models.Test)).scalars().all()
     tests = sorted(tests, key=lambda test: test.start)
 
+    # TODO: Separate tests into tryouts and practices.
+    tryouts = []
+    practices = []
+
     return render_template(
         "tests/index.html",
         tests=tests,
