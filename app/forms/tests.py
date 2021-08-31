@@ -48,12 +48,3 @@ class TestForm(Form):
     submit = SubmitField(
         "Submit",
     )
-
-
-class AttemptForm(Form):
-    answer = IntegerField(
-        "Answer",
-        [
-            validators.InputRequired(),
-        ],
-    )
