@@ -45,7 +45,6 @@ def create():
             name=form.name.data,
             start=form.start.data,
             end=form.end.data,
-            length=form.length.data,
             category=form.category.data,
         )
 
@@ -71,7 +70,6 @@ def update(id):
             name=test.name,
             start=test.start,
             end=test.end,
-            length=test.length,
             category=test.category,
         )
     else:
@@ -81,7 +79,6 @@ def update(id):
             test.name = form.name.data
             test.start = form.start.data
             test.end = form.end.data
-            test.length = form.length.data
             test.category = form.category.data
 
             models.db_session.commit()

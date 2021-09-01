@@ -6,7 +6,6 @@ from sqlalchemy import (
     DateTime,
     ForeignKey,
     Enum,
-    Boolean,
 )
 
 from sqlalchemy.orm import relationship
@@ -15,26 +14,18 @@ from .base import Model
 
 
 class Test(Model):
-    """
-    A math club test, such as a tryout or practice test.
-    """
-
     name = Column(
         String(100),
         nullable=False,
     )
 
-    # The start and end of the test window.
     start = Column(
         DateTime,
+        nullable=False,
     )
 
     end = Column(
         DateTime,
-    )
-
-    time_limit = Column(
-        Boolean,
         nullable=False,
     )
 

@@ -28,13 +28,6 @@ class TestForm(Form):
         format=DATETIME_LOCAL_FORMAT,
     )
 
-    length = IntegerField(
-        "Length (Minutes)",
-        [
-            validators.InputRequired(),
-        ]
-    )
-
     category = SelectField(
         "Category",
         [
