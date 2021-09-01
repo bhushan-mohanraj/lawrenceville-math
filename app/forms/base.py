@@ -1,4 +1,4 @@
-from wtforms import Form, validators
+from wtforms import Form, validators, ValidationError
 
 from wtforms.fields import (
     StringField,
