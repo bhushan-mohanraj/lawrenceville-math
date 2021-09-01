@@ -44,11 +44,11 @@ def create_tests():
     models.db_session.add(test)
     models.db_session.commit()
 
-    problem = models.Problem(
-        test_id=test.id,
-        statement="What is 1 + 1?",
-        answer=2,
-    )
-
-    models.db_session.add(problem)
-    models.db_session.commit()
+    # problem = models.Problem(
+    #     test_id=test.id,
+    #     statement="What is 1 + 1?",
+    #     answer=2,
+    # )
+    #
+    # models.db_session.add(problem)
+    # models.db_session.commit()
