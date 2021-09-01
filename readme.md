@@ -1,6 +1,6 @@
 # LMC
 
-The official website of the Lawrenceville Math Club.
+The official internal website of the Lawrenceville Math Club.
 
 # Development (Python 3.9)
 
