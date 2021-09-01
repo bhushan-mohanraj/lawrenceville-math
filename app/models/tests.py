@@ -7,6 +7,7 @@ from sqlalchemy import (
     DateTime,
     ForeignKey,
     Enum,
+    Boolean,
 )
 
 from sqlalchemy.orm import relationship
@@ -27,17 +28,14 @@ class Test(Model):
     # The start and end of the test window.
     start = Column(
         DateTime,
-        nullable=False,
     )
 
     end = Column(
         DateTime,
-        nullable=False,
     )
 
-    # The length of the test (in minutes).
-    length = Column(
-        Integer,
+    time_limit = Column(
+        Boolean,
         nullable=False,
     )
 
