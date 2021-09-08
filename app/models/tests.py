@@ -44,6 +44,10 @@ class Test(Model):
     )
 
     @property
+    def active(self) -> bool:
+        return self.start < current_edt_datetime() < self.end
+
+    @property
     def over(self) -> bool:
         return self.end > current_edt_datetime()
 
