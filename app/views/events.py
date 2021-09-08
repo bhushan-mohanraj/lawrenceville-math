@@ -71,7 +71,7 @@ def create():
     )
 
 
-@bp.route("/update/<int:id>/", methods=("GET", "POST"))
+@bp.route("/<int:id>/update/", methods=("GET", "POST"))
 @staff_required
 def update(id):
     event = models.db_session.get(models.Event, id)
@@ -105,7 +105,7 @@ def update(id):
     )
 
 
-@bp.route("/delete/<int:id>/")
+@bp.route("/<int:id>/delete/")
 @staff_required
 def delete(id):
     event = models.db_session.get(models.Event, id)

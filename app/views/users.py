@@ -108,7 +108,7 @@ def register():
     )
 
 
-@bp.route("/staff/<int:id>/")
+@bp.route("/<int:id>/staff/")
 @staff_required
 def switch_staff(id):
     """

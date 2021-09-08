@@ -60,7 +60,7 @@ def create():
     )
 
 
-@bp.route("/update/<int:id>/", methods=("GET", "POST"))
+@bp.route("/<int:id>/update/", methods=("GET", "POST"))
 @staff_required
 def update(id):
     test = models.db_session.get(models.Test, id)
@@ -92,7 +92,7 @@ def update(id):
     )
 
 
-@bp.route("/delete/<int:id>/")
+@bp.route("/<int:id>/delete/")
 @staff_required
 def delete(id):
     test = models.db_session.get(models.Test, id)
