@@ -11,6 +11,8 @@ from sqlalchemy import (
 
 from sqlalchemy.orm import relationship
 
+from ..helpers import current_edt_datetime
+
 from .base import Model
 
 
@@ -40,6 +42,10 @@ class Test(Model):
         Enum(*CATEGORY_CHOICES),
         nullable=False,
     )
+
+    @property
+    def over(self) -> bool:
+        return self.end > current_edt_datetime()
 
 
 class Problem(Model):
