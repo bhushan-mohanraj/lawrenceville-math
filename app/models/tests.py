@@ -50,7 +50,7 @@ class Test(Model):
 
 class Problem(Model):
     test_id = Column(
-        ForeignKey("test.id"),
+        ForeignKey("Test.id"),
     )
 
     test = relationship(Test, backref="problems")
@@ -68,14 +68,14 @@ class Problem(Model):
 
 class Attempt(Model):
     problem_id = Column(
-        ForeignKey("problem.id"),
+        ForeignKey("Problem.id"),
         nullable=False,
     )
 
     problem = relationship(Problem, backref="attempts")
 
     user_id = Column(
-        ForeignKey("user.id"),
+        ForeignKey("User.id"),
         nullable=False,
     )
 
