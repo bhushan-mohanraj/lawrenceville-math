@@ -4,6 +4,7 @@ from sqlalchemy import (
     Column,
     String,
     DateTime,
+    Integer,
     ForeignKey,
     Enum,
 )
@@ -39,3 +40,44 @@ class Test(Model):
         Enum(*CATEGORY_CHOICES),
         nullable=False,
     )
+
+
+class Problem(Model):
+    test_id = Column(
+        ForeignKey("test.id"),
+    )
+
+    test = relationship(Test, backref="problems")
+
+    statement = Column(
+        String(1000),
+        nullable=False,
+    )
+
+    answer = Column(
+        Integer,
+        nullable=False,
+    )
+
+
+class Attempt(Model):
+    problem_id = Column(
+        ForeignKey("problem.id"),
+        nullable=False,
+    )
+
+    problem = relationship(Problem, backref="attempts")
+
+    user_id = Column(
+        ForeignKey("user.id"),
+        nullable=False,
+    )
+
+    answer = Column(
+        Integer,
+        nullable=False,
+    )
+
+    @property
+    def correct(self):
+        return self.answer == self.problem.answer
