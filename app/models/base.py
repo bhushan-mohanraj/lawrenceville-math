@@ -19,6 +19,8 @@ BaseModel = declarative_base()
 
 
 class Model(BaseModel):
+    __abstract__ = True
+
     @declared_attr
     def __tablename__(cls):
         return cls.__name__
