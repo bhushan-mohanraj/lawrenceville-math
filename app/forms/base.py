@@ -1,4 +1,8 @@
-from wtforms import Form, validators, ValidationError
+from wtforms import (
+    Form as BaseForm,
+    validators,
+    ValidationError,
+)
 
 from wtforms.fields import (
     StringField,
@@ -14,3 +18,7 @@ from wtforms.fields.html5 import (
 
 # The default date format returned by the HTML5 datetime field.
 DATETIME_LOCAL_FORMAT = "%Y-%m-%dT%H:%M"
+
+
+class Form(BaseForm):
+    ...
