@@ -17,6 +17,7 @@ db_session = scoped_session(sessionmaker(bind=db_engine))
 
 BaseModel = declarative_base()
 
+
 class Model(BaseModel):
     @declared_attr
     def __tablename__(cls):
