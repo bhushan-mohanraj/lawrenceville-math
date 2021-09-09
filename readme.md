@@ -1,6 +1,6 @@
 # LMC
 
-The official internal website of the Lawrenceville Math Club.
+The internal website of the Lawrenceville Math Club.
 
 # Development (Python 3.9)
 
@@ -10,6 +10,7 @@ The official internal website of the Lawrenceville Math Club.
 
 ### To Do
 
+- Use absolute imports (i.e. `from app import models`) rather than relative imports (i.e. `from .. import models`).
 - Create single import file for files and models (i.e. `from . import Form, StringField` or `from . import Model, Column, String`).
 - Add base `Form` class with CSRF and `model_form` method to convert SQLAlchemy models to WTForms forms.
 
