@@ -7,5 +7,5 @@ def current_edt_datetime() -> datetime:
     """
 
     # TODO: Fix this function (currently correct only if the server is in EDT).
-    
+
     return datetime.now()
