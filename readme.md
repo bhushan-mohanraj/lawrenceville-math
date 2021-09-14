@@ -48,18 +48,6 @@ python3 -m black .
 py -m black .
 ```
 
-### VSCode
-
-
-In VSCode, with the Python extension installed, you can add the following settings to `settings.json`.
-
-```
-{
-    "python.formatting.provider": "black",
-    "editor.formatOnSave": true,
-}
-```
-
 ## Environment Variables
 
 In production, the `SECRET_KEY` environment variable should be set to a secure key (generated, for example, with the `secrets` module). The `DATABASE_URL` environment variable can also be set.
