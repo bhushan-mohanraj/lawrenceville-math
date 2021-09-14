@@ -28,4 +28,5 @@ class Event(Model):
 
     link = Column(
         types.String(1000),
+        doc="A link to details about the event, including the \"https://\"."
     )
