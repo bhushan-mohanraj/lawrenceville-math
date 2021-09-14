@@ -36,7 +36,7 @@ class Test(Model):
 
 class Problem(Model):
     test_id = Column(
-        types.ForeignKey("Test.id"),
+        schema.ForeignKey("Test.id"),
     )
 
     test = relationship(Test, backref="problems")
@@ -54,14 +54,14 @@ class Problem(Model):
 
 class Attempt(Model):
     problem_id = Column(
-        types.ForeignKey("Problem.id"),
+        schema.ForeignKey("Problem.id"),
         nullable=False,
     )
 
     problem = relationship(Problem, backref="attempts")
 
     user_id = Column(
-        types.ForeignKey("User.id"),
+        schema.ForeignKey("User.id"),
         nullable=False,
     )
 

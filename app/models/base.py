@@ -1,5 +1,15 @@
-from sqlalchemy import create_engine, types, Column
-from sqlalchemy.orm import scoped_session, sessionmaker, declarative_base, declared_attr
+from sqlalchemy import (
+    types,
+    schema,
+    Column,
+    create_engine,
+)
+from sqlalchemy.orm import (
+    scoped_session,
+    sessionmaker,
+    declarative_base,
+    declared_attr,
+)
 
 from flask import current_app
 
