@@ -34,11 +34,10 @@ def model_form(model, exclude_names=[]):
         name = column.name
 
         # Skip any excluded column names and skip the ID column.
-        if name in exclude_names:
+        if name in exclude_names or name == "id":
             continue
 
-        if name == "id":
-            continue
+        column_type =
 
         # The field type, corresponding to the column type.
         field_type = None
@@ -50,23 +49,23 @@ def model_form(model, exclude_names=[]):
         }
 
         # Determine the field type.
-        if isinstance(column.type, types.Integer):
+        if type(column.type) == types.Integer:
             field_type = fields.IntegerField
 
-        elif isinstance(column.type, types.String):
+        elif type(column.type) == types.String:
             field_type = fields.StringField
 
-        elif isinstance(column.type, types.Boolean):
+        elif type(column.type) == types.Boolean:
             field_type = fields.BooleanField
 
-        elif isinstance(column.type, types.Enum):
+        elif type(column.type) == types.Enum:
             field_type = fields.SelectField
 
             field_kwargs["choices"] = [
                 (choice, choice.title()) for choice in column.enums
             ]
 
-        elif isinstance(column.type, types.DateTime):
+        elif type(column.type) == types.DateTime:
             field_type = html5.DateTimeField
 
             field_kwargs["format"] = DATETIME_LOCAL_FORMAT
