@@ -62,7 +62,7 @@ def model_form(model, exclude_names=(), submit=True):
             field_type = fields.SelectField
 
             field_kwargs["choices"] = [
-                (choice, choice.title()) for choice in column.enums
+                (choice, choice.title()) for choice in column.type.enums
             ]
 
         elif type(column.type) == types.DateTime:
