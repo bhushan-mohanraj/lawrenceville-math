@@ -21,7 +21,7 @@
             <td>{{ user.id }}</td>
             <td>{{ user.email }}</td>
             <td>Yes</td>
-            <td><a href="{{ url_for('users.switch_staff', id=user.id) }}">Remove User from Staff</a></td>
+            <td><a href="{{ url_for('users.switch_staff', id=user.id) }}">Remove from Staff</a></td>
         </tr>
 
         {% else %}
@@ -30,7 +30,7 @@
             <td>{{ user.id }}</td>
             <td>{{ user.email }}</td>
             <td>No</td>
-            <td><a href="{{ url_for('users.switch_staff', id=user.id) }}">Add User to Staff</a></td>
+            <td><a href="{{ url_for('users.switch_staff', id=user.id) }}">Add to Staff</a></td>
         </tr>
 
         {% endif %}
