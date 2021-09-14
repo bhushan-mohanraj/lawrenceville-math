@@ -12,6 +12,9 @@ The internal website of the Lawrenceville Math Club.
 
 - Add base `Form` class with CSRF.
 - Add class-based CreateView, UpdateView, DeleteView, and CRUDView for DRY.
+- Use Alembic for SQLAlchemy migrations.
+- Add `setup.py` for deployment.
+- Add Google authentication limited to `@lawrenceville.org` email addresses.
 
 ## Environment Setup
 
