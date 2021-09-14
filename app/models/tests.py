@@ -1,5 +1,5 @@
-from .base import Model, Column, types
-from ..helpers import current_edt_datetime
+from app.helpers import current_edt_datetime
+from app.models.base import *
 
 from sqlalchemy.orm import relationship
 

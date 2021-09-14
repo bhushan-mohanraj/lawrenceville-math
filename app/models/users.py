@@ -1,4 +1,4 @@
-from .base import Model, Column, types
+from app.models.base import *
 
 from werkzeug.security import generate_password_hash, check_password_hash
 

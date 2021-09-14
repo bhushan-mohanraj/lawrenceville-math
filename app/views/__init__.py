@@ -1,4 +1,4 @@
-from . import (
+from app.views import (
     main,
     users,
     events,

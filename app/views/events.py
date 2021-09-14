@@ -6,12 +6,8 @@ from flask import (
     url_for,
 )
 
-from .. import models, forms
-
-from ..decorators import (
-    user_required,
-    staff_required,
-)
+from app import models, forms
+from app.decorators import user_required, staff_required
 
 from sqlalchemy import select
 

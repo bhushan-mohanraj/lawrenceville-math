@@ -8,8 +8,8 @@ from flask import (
 
 from sqlalchemy import select
 
-from .. import models, forms
-from ..decorators import user_required, staff_required
+from app import models, forms
+from app.decorators import user_required, staff_required
 
 
 bp = Blueprint(

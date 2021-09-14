@@ -1,18 +1,18 @@
-from .base import (
+from app.models.base import (
     Model,
     db_session,
     db_engine,
 )
 
-from .users import (
+from app.models.users import (
     User,
 )
 
-from .events import (
+from app.models.events import (
     Event,
 )
 
-from .tests import (
+from app.models.tests import (
     Test,
     Problem,
     Attempt,

@@ -1,12 +1,12 @@
-from .users import (
+from app.forms.users import (
     LoginForm,
     RegistrationForm,
 )
 
-from .events import (
+from app.forms.events import (
     EventForm,
 )
 
-from .tests import (
+from app.forms.tests import (
     TestForm,
 )

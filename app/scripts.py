@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from . import models
+from app import models
 
 
 def create_db():

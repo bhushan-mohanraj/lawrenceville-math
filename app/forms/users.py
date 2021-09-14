@@ -1,4 +1,4 @@
-from .base import *
+from app.forms.base import *
 
 
 class LoginForm(Form):

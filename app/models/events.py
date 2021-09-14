@@ -1,4 +1,4 @@
-from .base import Model, Column, types
+from app.models.base import *
 
 
 class Event(Model):
