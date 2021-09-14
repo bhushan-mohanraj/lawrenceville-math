@@ -13,11 +13,11 @@ class Form(BaseForm):
     pass
 
 
-def model_form(model, exclude_names=[]):
+def model_form(model, exclude_names=(), submit=True):
     """
     Create a WTForms Form from an SQLAlchemy Model.
 
-    Any column names that should not be included as fields can be added to the "exclude_names" list.
+    Any column names that should not be included as fields can be added to the "exclude_names" tuple.
 
     The ID column is, by default, not added to the form.
     """
