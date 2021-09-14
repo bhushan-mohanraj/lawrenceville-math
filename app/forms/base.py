@@ -1,5 +1,5 @@
-from wtforms import validators, fields
 from wtforms import Form as BaseForm
+from wtforms import validators, fields
 from wtforms.fields import html5
 
 from sqlalchemy import inspect, types
