@@ -73,15 +73,13 @@ def model_form(model, exclude_names=[]):
 
         # Add the input required or optional validator.
         if not column.nullable:
-            field_kwargs["validators"].append(validators.input_required)
+            field_kwargs["validators"] += [validators.InputRequired()]
         else:
-            field_kwargs["validators"].append(validators.optional)
+            field_kwargs["validators"] += [validators.Optional()]
 
         # Add the max length validator for strings.
         if isinstance(column.type, types.String):
-            field_kwargs["validators"].append(
-                validators.Length(max=column.type.length),
-            )
+            field_kwargs["validators"] += [validators.Length(max=column.type.length)]
 
         # Construct the field and add it to the form.
         setattr(
