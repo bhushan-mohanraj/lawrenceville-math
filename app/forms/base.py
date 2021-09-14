@@ -44,10 +44,10 @@ def model_form(model, exclude_names=[]):
         field_type = None
 
         # Any keyword arguments required for constructing the field.
-        field_kwargs = {}
-
-        field_kwargs["label"] = name.replace("_", " ").title()  # The formatted label.
-        field_kwargs["validators"] = []  # The list of WTForms validators for the field.
+        field_kwargs = {
+            "label": name.replace("_", " ").title(),
+            "validators": [],
+        }
 
         # Determine the field type.
         if isinstance(column.type, types.Integer):
