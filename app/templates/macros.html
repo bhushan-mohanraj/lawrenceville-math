@@ -26,6 +26,12 @@
     {{ field(class_="form-control") }}
 
     {% endif %}
+
+    {% if field.description %}
+
+    <div class="form-text">{{ field.description }} </div>
+
+    {% endif %}
 </div>
 
 {% endif %}
