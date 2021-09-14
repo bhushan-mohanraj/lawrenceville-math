@@ -66,6 +66,8 @@ def model_form(model, exclude_names=(), submit=True):
         elif type(column.type) == types.String:
             field_type = fields.StringField
 
+            field_kwargs["validators"] += [validators.Length(max=column.type.length)]
+
         elif type(column.type) == types.Boolean:
             field_type = fields.BooleanField
 
@@ -86,10 +88,6 @@ def model_form(model, exclude_names=(), submit=True):
             field_kwargs["validators"] += [validators.InputRequired()]
         else:
             field_kwargs["validators"] += [validators.Optional()]
-
-        # Add the max length validator for strings.
-        if isinstance(column.type, types.String):
-            field_kwargs["validators"] += [validators.Length(max=column.type.length)]
 
         # Construct the field and add it to the form.
         setattr(
