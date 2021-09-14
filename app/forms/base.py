@@ -20,6 +20,8 @@ def model_form(model, exclude_names=(), submit=True):
     Any column names that should not be included as fields can be added to the "exclude_names" tuple.
 
     The ID column is, by default, not added to the form.
+
+    A submit field, by default, is added to the form.
     """
 
     # TODO: Connect SQLAlchemy Column.doc and WTForms Field.description.
@@ -85,6 +87,13 @@ def model_form(model, exclude_names=(), submit=True):
             ModelForm,
             name,
             field_type(**field_kwargs),
+        )
+
+    if submit:
+        setattr(
+            ModelForm,
+            "submit",
+            fields.SubmitField("Submit"),
         )
 
     return ModelForm
