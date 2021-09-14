@@ -1,6 +1,11 @@
+import os
+
+from flask import session
+
 from wtforms import Form as BaseForm
 from wtforms import validators, fields
 from wtforms.fields import html5
+from wtforms.csrf.session import SessionCSRF
 
 from sqlalchemy import inspect, types
 
@@ -10,7 +15,11 @@ DATETIME_LOCAL_FORMAT = "%Y-%m-%dT%H:%M"
 
 
 class Form(BaseForm):
-    pass
+    class Meta:
+        csrf = True
+        csrf_class = SessionCSRF
+        csrf_secret = os.urandom(32)
+        csrf_context = session
 
 
 def model_form(model, exclude_names=(), submit=True):
