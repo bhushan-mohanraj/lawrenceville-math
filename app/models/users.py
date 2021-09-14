@@ -1,31 +1,22 @@
-from sqlalchemy import (
-    Column,
-    String,
-    Boolean,
-)
+from .base import Model, Column, types
 
-from werkzeug.security import (
-    generate_password_hash,
-    check_password_hash,
-)
-
-from .base import Model
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class User(Model):
     email = Column(
-        String(100),
+        types.String(100),
         unique=True,
         nullable=False,
     )
 
     password_hash = Column(
-        String(1000),
+        types.String(1000),
         nullable=False,
     )
 
     staff = Column(
-        Boolean,
+        types.Boolean,
         default=False,
         nullable=False,
     )

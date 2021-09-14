@@ -1,14 +1,5 @@
-from sqlalchemy import (
-    create_engine,
-    Column,
-    Integer,
-)
-from sqlalchemy.orm import (
-    scoped_session,
-    sessionmaker,
-    declarative_base,
-    declared_attr,
-)
+from sqlalchemy import create_engine, types, Column
+from sqlalchemy.orm import scoped_session, sessionmaker, declarative_base, declared_attr
 
 from flask import current_app
 
@@ -25,4 +16,4 @@ class Model(BaseModel):
     def __tablename__(cls):
         return cls.__name__
 
-    id = Column(Integer, primary_key=True)
+    id = Column(types.Integer, primary_key=True)
