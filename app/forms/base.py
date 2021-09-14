@@ -39,8 +39,6 @@ def model_form(model, exclude_names=(), submit=True):
         if name in exclude_names or name == "id":
             continue
 
-        column_type =
-
         # The field type, corresponding to the column type.
         field_type = None
 
