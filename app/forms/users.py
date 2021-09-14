@@ -2,7 +2,7 @@ from .base import *
 
 
 class LoginForm(Form):
-    email = StringField(
+    email = fields.StringField(
         "Email",
         [
             validators.InputRequired(),
@@ -10,20 +10,20 @@ class LoginForm(Form):
         ],
     )
 
-    password = PasswordField(
+    password = fields.PasswordField(
         "Password",
         [
             validators.InputRequired(),
         ],
     )
 
-    submit = SubmitField(
+    submit = fields.SubmitField(
         "Log In",
     )
 
 
 class RegistrationForm(Form):
-    email = StringField(
+    email = fields.StringField(
         "Email",
         [
             validators.InputRequired(),
@@ -31,14 +31,14 @@ class RegistrationForm(Form):
         ],
     )
 
-    password = PasswordField(
+    password = fields.PasswordField(
         "Password",
         [
             validators.InputRequired(),
         ],
     )
 
-    password_confirm = PasswordField(
+    password_confirm = fields.PasswordField(
         "Confirm Password",
         [
             validators.InputRequired(),
@@ -46,6 +46,6 @@ class RegistrationForm(Form):
         ],
     )
 
-    submit = SubmitField(
+    submit = fields.SubmitField(
         "Register",
     )
