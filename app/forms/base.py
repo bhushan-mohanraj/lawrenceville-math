@@ -1,4 +1,5 @@
-from wtforms import Form, validators, fields
+from wtforms import validators, fields
+from wtforms import Form as BaseForm
 from wtforms.fields import html5
 
 from sqlalchemy import inspect, types
@@ -6,6 +7,10 @@ from sqlalchemy import inspect, types
 
 # The default date format returned by the HTML5 datetime field.
 DATETIME_LOCAL_FORMAT = "%Y-%m-%dT%H:%M"
+
+
+class Form(BaseForm):
+    pass
 
 
 def model_form(model, exclude_names=[]):
