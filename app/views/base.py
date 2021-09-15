@@ -15,7 +15,7 @@ __all__ = [
 
 class CRUDBaseView(View, ABC):
     """
-    The base class for views that create, read, update, or delete model objects.
+    The base class for CRUD views.
     """
 
     # The SQLAlchemy model class.
