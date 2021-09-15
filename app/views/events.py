@@ -20,14 +20,6 @@ bp = Blueprint(
 )
 
 
-register_crud_views(
-    bp,
-    models.Event,
-    forms.EventForm,
-    ".index",
-)
-
-
 @bp.route("/")
 @user_required
 def index():
@@ -48,3 +40,11 @@ def index():
         meetings=meetings,
         contests=contests,
     )
+
+
+register_crud_views(
+    bp,
+    models.Event,
+    forms.EventForm,
+    ".index",
+)
