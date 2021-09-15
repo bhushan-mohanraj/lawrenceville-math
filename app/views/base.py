@@ -33,6 +33,8 @@ class CRUDBaseView(View, ABC):
 
 class CreateView(CRUDBaseView):
     methods = ["GET", "POST"]
+
+    # By default, only staff can create objects.
     decorators = [staff_required]
 
     # Use the form template for rendering the create form.
