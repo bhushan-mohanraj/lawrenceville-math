@@ -1,9 +1,8 @@
 from flask import (
     Blueprint,
     render_template,
-    request,
-    redirect,
-    url_for,
+    abort,
+    g,
 )
 
 from sqlalchemy import select
@@ -50,3 +49,19 @@ register_crud_views(
 )
 
 
+@bp.route("/<int:id>/problems/")
+@user_required
+def problems(id):
+    test = models.db_session.get(models.Test, id)
+
+    form = forms.AttemptForm()
+
+    if not g.user.staff:
+        if not test.active:
+            return abort(404)
+
+    return render_template(
+        "tests/problems.html",
+        test=test,
+        form=form,
+    )

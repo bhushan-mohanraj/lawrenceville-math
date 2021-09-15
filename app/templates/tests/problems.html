@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% import "macros.html" as macros %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center">
+    <h1>Problems for {{ test.name }}</h1>
+
+    {% if g.user.staff %}
+        <span>
+            <a type="button" class="btn btn-primary" href="{{ url_for('tests.create_problem', test_id=test.id) }}">
+                Create Problem
+            </a>
+        </span>
+    {% endif %}
+</div>
+
+<ul class="list-group">
+    {% for problem in test.problems %}
+        <li class="list-group-item">
+            {{ problem.statement }}
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
