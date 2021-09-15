@@ -1,5 +1,3 @@
-from abc import ABC
-
 from flask import render_template, request, url_for, redirect
 from flask.views import View
 
@@ -14,7 +12,7 @@ __all__ = [
 ]
 
 
-class CRUDBaseView(View, ABC):
+class CRUDBaseView(View):
     """
     The base class for CRUD views.
     """
@@ -66,6 +64,44 @@ class CreateView(CRUDBaseView):
             title="Create " + self.model.__name__,
             form=form_object,
         )
+
+
+class UpdateView(CRUDBaseView):
+    methods = ["GET", "POST"]
+
+    # By default, only staff can update objects.
+    decorators = [staff_required]
+
+    def dispatch_request(self, id):
+        model_object = models.db_session.get(self.model, id)
+
+        # test = models.db_session.get(models.Test, id)
+
+        # if request.method == "GET":
+        #     form = forms.TestForm(
+        #         name=test.name,
+        #         start=test.start,
+        #         end=test.end,
+        #         category=test.category,
+        #     )
+        # else:
+        #     form = forms.TestForm(request.form)
+
+        #     if form.validate():
+        #         test.name = form.name.data
+        #         test.start = form.start.data
+        #         test.end = form.end.data
+        #         test.category = form.category.data
+
+        #         models.db_session.commit()
+
+        #         return redirect(url_for(".index"))
+
+        # return render_template(
+        #     "form.html",
+        #     title="Update Test",
+        #     form=form,
+        # )
 
 
 class DeleteView(CRUDBaseView):
