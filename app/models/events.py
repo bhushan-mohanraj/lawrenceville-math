@@ -33,5 +33,5 @@ class Event(Model):
     )
 
     @property
-    def old(self) -> bool:
+    def over(self) -> bool:
         return self.end < current_edt_datetime()
