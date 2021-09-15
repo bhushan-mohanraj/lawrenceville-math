@@ -25,6 +25,17 @@ class CRUDBaseView(View):
 
     redirect_view_name: str  # The view name to redirect to after processing.
 
+    def other_data(self, **kwargs) -> dict:
+        """
+        Returns a dictionary of other data (outside submitted forms) to include in creating or updating models.
+
+        The dictionary keys should be column names and the values should be the desired column values.
+
+        The keyword arguments passed to this function are, by default, URL parameters from the view.
+        """
+
+        return {}
+
 
 class CreateView(CRUDBaseView):
     methods = ["GET", "POST"]
@@ -32,13 +43,16 @@ class CreateView(CRUDBaseView):
 
     template_name = "form.html"  # Use the form template for rendering the create form.
 
-    def dispatch_request(self):
+    def dispatch_request(self, **kwargs):
         form_object = self.form(request.form)
 
         if request.method == "POST" and form_object.validate():
             model_object = self.model()
 
             form_object.populate_obj(model_object)
+
+            for key, value in self.other_data(**kwargs):
+                setattr(model_object, key, value)
 
             models.db_session.add(model_object)
             models.db_session.commit()
@@ -58,14 +72,17 @@ class UpdateView(CRUDBaseView):
 
     template_name = "form.html"  # Use the form template for rendering the update form.
 
-    def dispatch_request(self, id):
-        model_object = models.db_session.get(self.model, id)
+    def dispatch_request(self, **kwargs):
+        model_object = models.db_session.get(self.model, kwargs.get("id"))
 
         # Create the form from the request form, if it exists, or from the model.
         form_object = self.form(request.form, obj=model_object)
 
         if request.method == "POST" and form_object.validate():
             form_object.populate_obj(model_object)
+
+            for key, value in self.other_data(**kwargs):
+                setattr(model_object, key, value)
 
             models.db_session.commit()
 
@@ -84,8 +101,8 @@ class DeleteView(CRUDBaseView):
     # By default, only staff can delete objects.
     decorators = [staff_required]
 
-    def dispatch_request(self, id):
-        model_object = models.db_session.get(self.model, id)
+    def dispatch_request(self, **kwargs):
+        model_object = models.db_session.get(self.model, kwargs.get("id"))
 
         models.db_session.delete(model_object)
         models.db_session.commit()
