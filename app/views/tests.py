@@ -20,6 +20,14 @@ bp = Blueprint(
 )
 
 
+register_crud_views(
+    bp,
+    models.Test,
+    forms.TestForm,
+    ".index",
+)
+
+
 @bp.route("/")
 @user_required
 def index():
@@ -36,26 +44,5 @@ def index():
     )
 
 
-class TestCreateView(CreateView):
-    model = models.Test
-    form = forms.TestForm
-
-    redirect_view_name = ".index"
 
 
-class TestUpdateView(UpdateView):
-    model = models.Test
-    form = forms.TestForm
-
-    redirect_view_name = ".index"
-
-
-class TestDeleteView(DeleteView):
-    model = models.Test
-
-    redirect_view_name = ".index"
-
-
-bp.add_url_rule("/create/", view_func=TestCreateView.as_view("create"))
-bp.add_url_rule("/<int:id>/update/", view_func=TestUpdateView.as_view("update"))
-bp.add_url_rule("/<int:id>/delete/", view_func=TestDeleteView.as_view("delete"))

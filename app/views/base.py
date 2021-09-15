@@ -1,4 +1,4 @@
-from flask import render_template, request, url_for, redirect
+from flask import Blueprint, render_template, request, url_for, redirect
 from flask.views import View
 
 from app import models
@@ -9,6 +9,7 @@ __all__ = [
     "CreateView",
     "UpdateView",
     "DeleteView",
+    "register_crud_views",
 ]
 
 
@@ -90,3 +91,56 @@ class DeleteView(CRUDBaseView):
         models.db_session.commit()
 
         return redirect(url_for(self.redirect_view_name))
+
+
+def register_crud_views(
+    blueprint: Blueprint,
+    model_: type,
+    form_: type,
+    redirect_view_name_: str,
+    url_prefix: str = "",
+    view_name_prefix: str = "",
+):
+    """
+    Register a CreateView, UpdateView, and DeleteView to a blueprint.
+
+    A URL prefix can be added, which should start, but not end, with a slash.
+
+    The views are named "create", "update", and "delete" by default.
+    This means they can be accessed, for example, by url_for("bp.create").
+    A view name prefix can be added to prefix these names.
+
+    Underscores are used after certain parameters because of Python's variable scopes.
+    """
+
+    class ModelCreateView(CreateView):
+        model = model_
+        form = form_
+
+        redirect_view_name = redirect_view_name_
+
+    class ModelUpdateView(UpdateView):
+        model = model_
+        form = form_
+
+        redirect_view_name = redirect_view_name_
+
+    class ModelDeleteView(DeleteView):
+        model = model_
+
+        redirect_view_name = redirect_view_name_
+
+    blueprint.add_url_rule(
+        url_prefix + "/create/",
+        view_func=ModelCreateView.as_view(view_name_prefix + "create"),
+    )
+
+    blueprint.add_url_rule(
+        url_prefix + "/<int:id>/update/",
+        view_func=ModelUpdateView.as_view(view_name_prefix + "update"),
+    )
+
+    blueprint.add_url_rule(
+        url_prefix + "/<int:id>/delete/",
+        view_func=ModelDeleteView.as_view(view_name_prefix + "delete"),
+    )
