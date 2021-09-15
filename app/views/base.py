@@ -6,7 +6,6 @@ from app.decorators import staff_required
 
 
 __all__ = [
-    "CRUDBaseView",
     "CreateView",
     "UpdateView",
     "DeleteView",
