@@ -10,7 +10,6 @@ The internal website of the Lawrenceville Math Club.
 
 ### To Do
 
-- Add base `Form` class with CSRF.
 - Add class-based CreateView, UpdateView, DeleteView, and CRUDView for DRY.
 - Use Alembic for SQLAlchemy migrations.
 - Add `setup.py` for deployment.
