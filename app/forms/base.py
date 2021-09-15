@@ -33,8 +33,6 @@ def model_form(model, exclude_names=(), submit=True):
     A submit field, by default, is added to the form.
     """
 
-    # TODO: Connect SQLAlchemy Column.default and WTForms Field.default.
-
     class ModelForm(Form):
         pass
 
