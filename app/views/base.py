@@ -51,7 +51,7 @@ class CreateView(CRUDBaseView):
 
             form_object.populate_obj(model_object)
 
-            for key, value in self.other_data(**kwargs):
+            for key, value in self.other_data(**kwargs).items():
                 setattr(model_object, key, value)
 
             models.db_session.add(model_object)
@@ -81,7 +81,7 @@ class UpdateView(CRUDBaseView):
         if request.method == "POST" and form_object.validate():
             form_object.populate_obj(model_object)
 
-            for key, value in self.other_data(**kwargs):
+            for key, value in self.other_data(**kwargs).items():
                 setattr(model_object, key, value)
 
             models.db_session.commit()
