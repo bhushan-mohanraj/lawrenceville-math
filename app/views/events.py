@@ -46,7 +46,7 @@ class EventCreateView(CreateView):
     model = models.Event
     form = forms.EventForm
 
-    redirect_name = ".index"
+    redirect_view_name = ".index"
 
 
 bp.add_url_rule("/create/", view_func=EventCreateView.as_view("create"))

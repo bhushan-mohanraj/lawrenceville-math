@@ -40,7 +40,7 @@ class TestCreateView(CreateView):
     model = models.Test
     form = forms.TestForm
 
-    redirect_name = ".index"
+    redirect_view_name = ".index"
 
 
 bp.add_url_rule("/create/", view_func=TestCreateView.as_view("create"))

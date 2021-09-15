@@ -17,28 +17,19 @@ class CRUDBaseView(View):
     The base class for CRUD views.
     """
 
-    # The SQLAlchemy model class.
-    model = None
+    model = None  # The SQLAlchemy model class.
+    form = None  # The WTForms form class, with form fields matching model columns.
 
-    # The WTForms form class, with form fields matching model columns.
-    form = None
+    template_name: str  # The template name used for displaying objects or forms.
 
-    # The template name used for displaying objects or forms.
-    template_name: str
-
-    # The view name to redirect to.
-    redirect_name: str
+    redirect_view_name: str  # The view name to redirect to after processing.
 
 
-# TODO: Add support for additional arguments (outside of form) to be added to object.
 class CreateView(CRUDBaseView):
     methods = ["GET", "POST"]
-
-    # By default, only staff can create objects.
     decorators = [staff_required]
 
-    # Use the form template for rendering the create form.
-    template_name = "form.html"
+    template_name = "form.html"  # Use the form template for rendering the create form.
 
     def dispatch_request(self):
         form_object = self.form(request.form)
@@ -57,7 +48,7 @@ class CreateView(CRUDBaseView):
             models.db_session.add(model_object)
             models.db_session.commit()
 
-            return redirect(url_for(self.redirect_name))
+            return redirect(url_for(self.redirect_view_name))
 
         return render_template(
             self.template_name,
@@ -116,4 +107,4 @@ class DeleteView(CRUDBaseView):
         models.db_session.delete(model_object)
         models.db_session.commit()
 
-        return redirect(url_for(self.redirect_name))
+        return redirect(url_for(self.redirect_view_name))
