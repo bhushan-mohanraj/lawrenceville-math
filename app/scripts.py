@@ -49,6 +49,6 @@ def create_tests():
         statement="What is 1 + 1?",
         answer=2,
     )
-    
+
     models.db_session.add(problem)
     models.db_session.commit()
