@@ -1,7 +1,5 @@
 # Static Files
 
-## CSS
-
 - Download the Bootstrap source and move it to `app/static/bootstrap-x.y.z` where `x.y.z` is the Bootstrap version.
   - Add this folder to `.gitignore`.
   - Update the version to `x.y.z` in `app/static/scss/custom.scss`.
