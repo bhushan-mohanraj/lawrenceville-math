@@ -31,7 +31,7 @@
 
         <p class="fs-5">{{ problem.statement }}</p>
 
-        {% if g.user.staff %}
+        {% if g.user.staff or test.over %}
             <p class="fs-5">
                 <b>Answer:</b> {{ problem.answer }}
             </p>

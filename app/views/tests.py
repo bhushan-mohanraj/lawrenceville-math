@@ -63,19 +63,20 @@ def problems(id):
     form = forms.AttemptForm()
 
     if not g.user.staff:
-        if not test.active:
+        if not (test.active or test.over):
             return abort(404)
 
-        for problem in test.problems:
-            current_attempt = None
+        if test.active:
+            for problem in test.problems:
+                current_attempt = None
 
-            for attempt in problem.attempts:
-                if attempt.user_id == g.user.id:
-                    current_attempt = attempt
+                for attempt in problem.attempts:
+                    if attempt.user_id == g.user.id:
+                        current_attempt = attempt
 
-                    break
+                        break
 
-            attempts.append(current_attempt)
+                attempts.append(current_attempt)
 
     return render_template(
         "tests/problems.html",
