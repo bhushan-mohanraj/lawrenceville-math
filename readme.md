@@ -10,7 +10,6 @@ The internal website of the Lawrenceville Math Club.
 
 ### To Do
 
-- Add support for additional arguments (outside of form) to be added in CreateView and UpdateView.
 - Use Alembic for SQLAlchemy migrations.
 - Add `setup.py` for deployment.
 - Add Google authentication limited to `@lawrenceville.org` email addresses.
