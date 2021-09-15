@@ -1,6 +1,9 @@
 from flask import (
     Blueprint,
     render_template,
+    request,
+    redirect,
+    url_for,
     abort,
     g,
 )
@@ -109,3 +112,40 @@ bp.add_url_rule(
     "/<int:test_id>/problems/<int:id>/delete/",
     view_func=ProblemDeleteView.as_view("delete_problem"),
 )
+
+
+@bp.route("/<int:test_id>/problems/<int:problem_id>/attempt/", methods=("POST",))
+@user_required
+def attempt_problem(test_id, problem_id):
+    test = models.db_session.get(models.Test, test_id)
+    problem = models.db_session.get(models.Problem, problem_id)
+
+    if not test.active:
+        return abort(404)
+
+    form = forms.AttemptForm(request.form)
+
+    if form.validate():
+        current_attempt = None
+
+        for attempt in problem.attempts:
+            if attempt.user_id == g.user.id:
+                current_attempt = attempt
+
+                break
+
+        if current_attempt is None:
+            new_attempt = models.Attempt(
+                user_id=g.user.id,
+                problem_id=problem_id,
+                answer=form.answer.data,
+            )
+
+            models.db_session.add(new_attempt)
+            models.db_session.commit()
+        else:
+            current_attempt.answer = form.answer.data
+
+            models.db_session.commit()
+
+    return redirect(url_for(".problems", id=test_id))
