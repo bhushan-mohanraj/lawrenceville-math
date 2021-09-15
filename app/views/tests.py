@@ -9,6 +9,7 @@ from flask import (
 from sqlalchemy import select
 
 from app import models, forms
+from app.views.base import *
 from app.decorators import user_required, staff_required
 
 
@@ -35,29 +36,14 @@ def index():
     )
 
 
-@bp.route("/create/", methods=("GET", "POST"))
-@staff_required
-def create():
-    form = forms.TestForm(request.form)
+class TestCreateView(CreateView):
+    model_class = models.Test
+    form_class = forms.TestForm
 
-    if request.method == "POST" and form.validate():
-        test = models.Test(
-            name=form.name.data,
-            start=form.start.data,
-            end=form.end.data,
-            category=form.category.data,
-        )
+    redirect_name = ".index"
 
-        models.db_session.add(test)
-        models.db_session.commit()
 
-        return redirect(url_for(".index"))
-
-    return render_template(
-        "form.html",
-        title="Create Test",
-        form=form,
-    )
+bp.add_url_rule('/create/', view_func=TestCreateView.as_view('create'))
 
 
 @bp.route("/<int:id>/update/", methods=("GET", "POST"))

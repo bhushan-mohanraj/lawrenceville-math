@@ -7,6 +7,7 @@ from flask import (
 )
 
 from app import models, forms
+from app.views.base import *
 from app.decorators import user_required, staff_required
 
 from sqlalchemy import select
@@ -41,30 +42,14 @@ def index():
     )
 
 
-@bp.route("/create/", methods=("GET", "POST"))
-@staff_required
-def create():
-    form = forms.EventForm(request.form)
+class EventCreateView(CreateView):
+    model_class = models.Event
+    form_class = forms.EventForm
 
-    if request.method == "POST" and form.validate():
-        event = models.Event(
-            name=form.name.data,
-            start=form.start.data,
-            end=form.end.data,
-            category=form.category.data,
-            link=form.link.data,
-        )
+    redirect_name = ".index"
 
-        models.db_session.add(event)
-        models.db_session.commit()
 
-        return redirect(url_for(".index"))
-
-    return render_template(
-        "form.html",
-        title="Create Event",
-        form=form,
-    )
+bp.add_url_rule('/create/', view_func=EventCreateView.as_view('create'))
 
 
 @bp.route("/<int:id>/update/", methods=("GET", "POST"))
