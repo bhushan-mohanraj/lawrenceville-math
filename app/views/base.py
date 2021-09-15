@@ -31,6 +31,7 @@ class CRUDBaseView(View, ABC):
     redirect_name: str
 
 
+# TODO: Add support for additional arguments (outside of form) to be added to object.
 class CreateView(CRUDBaseView):
     methods = ["GET", "POST"]
 
