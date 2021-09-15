@@ -10,6 +10,7 @@ from app.decorators import staff_required
 __all__ = [
     "CRUDBaseView",
     "CreateView",
+    "DeleteView",
 ]
 
 
@@ -65,3 +66,18 @@ class CreateView(CRUDBaseView):
             title="Create " + self.model.__name__,
             form=form_object,
         )
+
+
+class DeleteView(CRUDBaseView):
+    methods = ["GET"]
+
+    # By default, only staff can delete objects.
+    decorators = [staff_required]
+
+    def dispatch_request(self, id):
+        model_object = models.db_session.get(self.model, id)
+
+        models.db_session.delete(model_object)
+        models.db_session.commit()
+
+        return redirect(url_for(self.redirect_name))
