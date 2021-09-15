@@ -9,7 +9,7 @@ from sqlalchemy import select
 
 from app import models, forms
 from app.views.base import *
-from app.decorators import user_required, staff_required
+from app.decorators import user_required
 
 
 bp = Blueprint(
