@@ -33,6 +33,10 @@ class Test(Model):
     def active(self) -> bool:
         return self.start <= current_edt_datetime() <= self.end
 
+    @property
+    def old(self) -> bool:
+        return self.end < current_edt_datetime()
+
 
 class Problem(Model):
     test_id = Column(
