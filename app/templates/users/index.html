@@ -14,27 +14,21 @@
     </thead>
     <tbody>
         {% for user in users %}
-
-        {% if user.staff %}
-
-        <tr class="table-light">
-            <td>{{ user.id }}</td>
-            <td>{{ user.email }}</td>
-            <td>Yes</td>
-            <td><a href="{{ url_for('users.switch_staff', id=user.id) }}">Remove from Staff</a></td>
-        </tr>
-
-        {% else %}
-
-        <tr>
-            <td>{{ user.id }}</td>
-            <td>{{ user.email }}</td>
-            <td>No</td>
-            <td><a href="{{ url_for('users.switch_staff', id=user.id) }}">Add to Staff</a></td>
-        </tr>
-
-        {% endif %}
-
+            {% if user.staff %}
+                <tr class="table-light">
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>Yes</td>
+                    <td><a href="{{ url_for('users.switch_staff', id=user.id) }}">Remove from Staff</a></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>No</td>
+                    <td><a href="{{ url_for('users.switch_staff', id=user.id) }}">Add to Staff</a></td>
+                </tr>
+            {% endif %}
         {% endfor %}
     </tbody>
 </table>

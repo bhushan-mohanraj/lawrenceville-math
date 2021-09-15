@@ -27,48 +27,40 @@
                 <div class="collapse navbar-collapse" id="menu">
                     <ul class="navbar-nav">
                         {% if g.user %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('events.index') }}">Events</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('events.index') }}">Events</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('tests.index') }}">Tests</a>
-                        </li>
-
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('tests.index') }}">Tests</a>
+                            </li>
                         {% endif %}
 
                         {% if g.user.staff %}
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('users.index') }}">Users</a>
-                        </li>
-
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('users.index') }}">Users</a>
+                            </li>
                         {% endif %}
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         {% if not g.user %}
-
-                        <li class="nav-item">
-                            <a class="btn btn-secondary" href="{{ url_for('users.login') }}">
-                                Log In
-                            </a>
-                        </li>
-
+                            <li class="nav-item">
+                                <a class="btn btn-secondary" href="{{ url_for('users.login') }}">
+                                    Log In
+                                </a>
+                            </li>
                         {% else %}
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link active dropdown-toggle" id="dropdown" role="button"
-                                data-bs-toggle="dropdown">
-                                {{ g.user.email }}
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li>
-                                    <a class="dropdown-item" href="{{ url_for('users.logout') }}">Log Out</a>
-                                </li>
-                            </ul>
-                        </li>
-
+                            <li class="nav-item dropdown">
+                                <a class="nav-link active dropdown-toggle" id="dropdown" role="button"
+                                    data-bs-toggle="dropdown">
+                                    {{ g.user.email }}
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li>
+                                        <a class="dropdown-item" href="{{ url_for('users.logout') }}">Log Out</a>
+                                    </li>
+                                </ul>
+                            </li>
                         {% endif %}
                     </ul>
                 </div>

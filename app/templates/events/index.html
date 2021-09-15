@@ -8,54 +8,40 @@
     <h1>Events</h1>
 
     {% if g.user.staff %}
-
-    <span>
-        <a type="button" class="btn btn-primary" href="{{ url_for('events.create') }}">Create</a>
-    </span>
-
+        <span>
+            <a type="button" class="btn btn-primary" href="{{ url_for('events.create') }}">Create</a>
+        </span>
     {% endif %}
 </div>
 
 {% for name, events in [("meetings", meetings), ("contests", contests)] %}
+    <h2>{{ name.title() }}</h2>
 
-<h2>{{ name.title() }}</h2>
+    {% if events %}
+        {% for event in events %}
+            <h3 class="d-flex justify-content-between align-items-center">
+                {{ event.name }}
 
-{% if events %}
+                {% if g.user.staff %}
+                    <span>
+                        <a type="button" class="btn btn-secondary" href="{{ url_for('events.update', id=event.id) }}">Update</a>
+                        <a type="button" class="btn btn-primary" href="{{ url_for('events.delete', id=event.id) }}">Delete</a>
+                    </span>
+                {% endif %}
+            </h3>
 
-{% for event in events %}
+            <ul>
+                <li><b>Start Date:</b> {{ macros.render_datetime(event.start) }}</li>
+                <li><b>End Date:</b> {{ macros.render_datetime(event.end) }}</li>
 
-<h3 class="d-flex justify-content-between align-items-center">
-    {{ event.name }}
-
-    {% if g.user.staff %}
-
-    <span>
-        <a type="button" class="btn btn-secondary" href="{{ url_for('events.update', id=event.id) }}">Update</a>
-        <a type="button" class="btn btn-primary" href="{{ url_for('events.delete', id=event.id) }}">Delete</a>
-    </span>
-
+                {% if event.link %}
+                    <li><b>Link:</b> <a href="{{ event.link }}">{{ event.link }}</a></li>
+                {% endif %}
+            </ul>
+        {% endfor %}
+    {% else %}
+        <p>No {{ name }} are currently available.</p>
     {% endif %}
-</h3>
-
-<ul>
-    <li><b>Start Date:</b> {{ macros.render_datetime(event.start) }}</li>
-    <li><b>End Date:</b> {{ macros.render_datetime(event.end) }}</li>
-
-    {% if event.link %}
-
-    <li><b>Link:</b> <a href="{{ event.link }}">{{ event.link }}</a></li>
-
-    {% endif %}
-</ul>
-
-{% endfor %}
-
-{% else %}
-
-<p>No {{ name }} are currently available.</p>
-
-{% endif %}
-
 {% endfor %}
 
 {% endblock %}
