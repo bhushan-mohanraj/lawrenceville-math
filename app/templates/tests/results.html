@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Results for {{ test.name }}</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Email Address</th>
+
+            {% for i in range(length) %}
+                <th>{{ i }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for email, scores in results.items() %}
+            <tr>
+                <td>{{ email }}</td>
+
+                {% for i in range(length) %}
+                    <td>{{ scores[i] }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

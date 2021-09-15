@@ -164,3 +164,45 @@ def attempt_problem(test_id, problem_id):
             models.db_session.commit()
 
     return redirect(url_for(".problems", id=test_id))
+
+
+@bp.route("/<int:id>/results/")
+@user_required
+def results(id):
+    test = models.db_session.get(models.Test, id)
+
+    # Only display the results to users when the test is over.
+    if not g.user.staff:
+        if not test.over:
+            abort(404)
+
+    # The results for each user.
+    results = {}
+
+    # Find the users to display results for (show all results only to staff).
+    if g.user.staff:
+        users = models.db_session.execute(select(models.User)).scalars().all()
+    else:
+        users = [g.user]
+
+    for user in users:
+        if not user.staff:
+            results[user.email] = []
+
+    for problem in test.problems:
+        for attempt in problem.attempts:
+            if attempt.user in users:
+                results[attempt.user.email].append(1 if attempt.correct else 0)
+
+    # Sort results by score.
+    results = {
+        email: scores for email, scores
+        in sorted(results.items(), key=lambda item: -sum(item[1]))
+    }
+
+    return render_template(
+        "tests/results.html",
+        test=test,
+        results=results,
+        length=len(test.problems),
+    )

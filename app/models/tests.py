@@ -69,6 +69,8 @@ class Attempt(Model):
         nullable=False,
     )
 
+    user = relationship("User", backref="attempts")
+
     answer = Column(
         types.Integer,
         nullable=False,
