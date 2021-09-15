@@ -34,13 +34,19 @@ def index():
     tests = models.db_session.execute(select(models.Test)).scalars().all()
     tests = sorted(tests, key=lambda test: test.start)
 
-    # TODO: Separate tests into tryouts and practices.
     tryouts = []
     practices = []
 
+    for test in tests:
+        if test.category == test.TRYOUT:
+            tryouts.append(test)
+        elif test.category == test.PRACTICE:
+            practices.append(test)
+
     return render_template(
         "tests/index.html",
-        tests=tests,
+        tryouts=tryouts,
+        practices=practices,
     )
 
 

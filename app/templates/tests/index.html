@@ -14,26 +14,30 @@
     {% endif %}
 </div>
 
-{% if tests %}
-    {% for test in tests %}
-        <h2 class="d-flex justify-content-between align-items-center">
-            {{ test.name }}
+{% for name, tests in [("tryouts", tryouts), ("practices", practices)] %}
+    <h2>{{ name.title() }}</h2>
 
-            {% if g.user.staff %}
-                <span>
-                    <a type="button" class="btn btn-secondary" href="{{ url_for('tests.update', id=test.id) }}">Update</a>
-                    <a type="button" class="btn btn-primary" href="{{ url_for('tests.delete', id=test.id) }}">Delete</a>
-                </span>
-            {% endif %}
-        </h2>
+    {% if tests %}
+        {% for test in tests %}
+            <h3 class="d-flex justify-content-between align-items-center">
+                {{ test.name }}
 
-        <ul>
-            <li><b>Start Date:</b> {{ macros.render_datetime(test.start) }}</li>
-            <li><b>End Date:</b> {{ macros.render_datetime(test.end) }}</li>
-        </ul>
-    {% endfor %}
-{% else %}
-    <p>No tests are currently available.</p>
-{% endif %}
+                {% if g.user.staff %}
+                    <span>
+                        <a type="button" class="btn btn-secondary" href="{{ url_for('tests.update', id=test.id) }}">Update</a>
+                        <a type="button" class="btn btn-primary" href="{{ url_for('tests.delete', id=test.id) }}">Delete</a>
+                    </span>
+                {% endif %}
+            </h3>
+
+            <ul>
+                <li><b>Start Date:</b> {{ macros.render_datetime(test.start) }}</li>
+                <li><b>End Date:</b> {{ macros.render_datetime(test.end) }}</li>
+            </ul>
+        {% endfor %}
+    {% else %}
+        <p>No {{ name }} are currently available.</p>
+    {% endif %}
+{% endfor %}
 
 {% endblock %}
