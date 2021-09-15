@@ -83,3 +83,29 @@ bp.add_url_rule(
     "/<int:test_id>/problems/create/",
     view_func=ProblemCreateView.as_view("create_problem"),
 )
+
+
+class ProblemUpdateView(UpdateView):
+    model = models.Problem
+    form = forms.ProblemForm
+
+    redirect_view_name = ".index"
+
+
+bp.add_url_rule(
+    "/<int:test_id>/problems/<int:id>/update/",
+    view_func=ProblemUpdateView.as_view("update_problem"),
+)
+
+
+class ProblemDeleteView(DeleteView):
+    model = models.Problem
+    form = forms.ProblemForm
+
+    redirect_view_name = ".index"
+
+
+bp.add_url_rule(
+    "/<int:test_id>/problems/<int:id>/delete/",
+    view_func=ProblemDeleteView.as_view("delete_problem"),
+)

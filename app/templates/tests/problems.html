@@ -18,7 +18,16 @@
 
 {% if test.problems %}
     {% for problem in test.problems %}
-        <h2>Problem {{ loop.index }}</h2>
+        <h2 class="d-flex justify-content-between align-items-center">
+            Problem {{ loop.index }}
+
+            {% if g.user.staff %}
+                <span>
+                    <a type="button" class="btn btn-secondary" href="{{ url_for('tests.update_problem', test_id=test.id, id=problem.id) }}">Update</a>
+                    <a type="button" class="btn btn-primary" href="{{ url_for('tests.delete_problem', test_id=test.id, id=problem.id) }}">Delete</a>
+                </span>
+            {% endif %}
+        </h2>
 
         {{ problem.statement }}
     {% endfor %}
