@@ -79,7 +79,7 @@ def model_form(model, exclude_names=(), submit=True):
             ]
 
         elif type(column.type) == types.DateTime:
-            field_type = html5.DateTimeField
+            field_type = html5.DateTimeLocalField
 
             field_kwargs["format"] = DATETIME_LOCAL_FORMAT
 
