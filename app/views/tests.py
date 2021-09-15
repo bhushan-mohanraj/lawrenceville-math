@@ -43,47 +43,19 @@ class TestCreateView(CreateView):
     redirect_view_name = ".index"
 
 
+class TestUpdateView(UpdateView):
+    model = models.Test
+    form = forms.TestForm
+
+    redirect_view_name = ".index"
+
+
+class TestDeleteView(DeleteView):
+    model = models.Test
+
+    redirect_view_name = ".index"
+
+
 bp.add_url_rule("/create/", view_func=TestCreateView.as_view("create"))
-
-
-@bp.route("/<int:id>/update/", methods=("GET", "POST"))
-@staff_required
-def update(id):
-    test = models.db_session.get(models.Test, id)
-
-    if request.method == "GET":
-        form = forms.TestForm(
-            name=test.name,
-            start=test.start,
-            end=test.end,
-            category=test.category,
-        )
-    else:
-        form = forms.TestForm(request.form)
-
-        if form.validate():
-            test.name = form.name.data
-            test.start = form.start.data
-            test.end = form.end.data
-            test.category = form.category.data
-
-            models.db_session.commit()
-
-            return redirect(url_for(".index"))
-
-    return render_template(
-        "form.html",
-        title="Update Test",
-        form=form,
-    )
-
-
-@bp.route("/<int:id>/delete/")
-@staff_required
-def delete(id):
-    test = models.db_session.get(models.Test, id)
-
-    models.db_session.delete(test)
-    models.db_session.commit()
-
-    return redirect(url_for(".index"))
+bp.add_url_rule("/<int:id>/update/", view_func=TestUpdateView.as_view("update"))
+bp.add_url_rule("/<int:id>/delete/", view_func=TestDeleteView.as_view("delete"))
