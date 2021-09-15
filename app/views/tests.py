@@ -37,8 +37,8 @@ def index():
 
 
 class TestCreateView(CreateView):
-    model_class = models.Test
-    form_class = forms.TestForm
+    model = models.Test
+    form = forms.TestForm
 
     redirect_name = ".index"
 

@@ -43,8 +43,8 @@ def index():
 
 
 class EventCreateView(CreateView):
-    model_class = models.Event
-    form_class = forms.EventForm
+    model = models.Event
+    form = forms.EventForm
 
     redirect_name = ".index"
 

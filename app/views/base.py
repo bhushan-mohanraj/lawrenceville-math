@@ -19,10 +19,10 @@ class CRUDBaseView(View, ABC):
     """
 
     # The SQLAlchemy model class.
-    model_class = None
+    model = None
 
     # The WTForms form class, with form fields matching model columns.
-    form_class = None
+    form = None
 
     # The template name used for displaying objects or forms.
     template_name: str
@@ -42,26 +42,26 @@ class CreateView(CRUDBaseView):
     template_name = "form.html"
 
     def dispatch_request(self):
-        form = self.form_class(request.form)
+        form_object = self.form(request.form)
 
-        if request.method == "POST" and form.validate():
-            model = self.model_class()
+        if request.method == "POST" and form_object.validate():
+            model_object = self.model()
 
-            for field in form:
-                if field.name in self.model_class.__table__.columns.keys():
+            for field in form_object:
+                if field.name in self.model.__table__.columns.keys():
                     setattr(
-                        model,
+                        model_object,
                         field.name,
                         field.data,
                     )
 
-            models.db_session.add(model)
+            models.db_session.add(model_object)
             models.db_session.commit()
 
             return redirect(url_for(self.redirect_name))
 
         return render_template(
             self.template_name,
-            title="Create " + self.model_class.__name__,
-            form=form,
+            title="Create " + self.model.__name__,
+            form=form_object,
         )
