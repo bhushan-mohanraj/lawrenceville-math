@@ -53,40 +53,28 @@ class CreateView(CRUDBaseView):
 
 class UpdateView(CRUDBaseView):
     methods = ["GET", "POST"]
-
-    # By default, only staff can update objects.
     decorators = [staff_required]
+
+    template_name = "form.html"  # Use the form template for rendering the update form.
 
     def dispatch_request(self, id):
         model_object = models.db_session.get(self.model, id)
 
-        # test = models.db_session.get(models.Test, id)
+        # Create the form from the request form, if it exists, or from the model.
+        form_object = self.form(request.form, obj=model_object)
 
-        # if request.method == "GET":
-        #     form = forms.TestForm(
-        #         name=test.name,
-        #         start=test.start,
-        #         end=test.end,
-        #         category=test.category,
-        #     )
-        # else:
-        #     form = forms.TestForm(request.form)
+        if request.method == "POST" and form_object.validate():
+            form_object.populate_obj(model_object)
 
-        #     if form.validate():
-        #         test.name = form.name.data
-        #         test.start = form.start.data
-        #         test.end = form.end.data
-        #         test.category = form.category.data
+            models.db_session.commit()
 
-        #         models.db_session.commit()
+            return redirect(url_for(self.redirect_view_name))
 
-        #         return redirect(url_for(".index"))
-
-        # return render_template(
-        #     "form.html",
-        #     title="Update Test",
-        #     form=form,
-        # )
+        return render_template(
+            self.template_name,
+            title="Update " + self.model.__name__,
+            form=form_object,
+        )
 
 
 class DeleteView(CRUDBaseView):
