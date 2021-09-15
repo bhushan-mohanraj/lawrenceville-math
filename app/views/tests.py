@@ -65,3 +65,21 @@ def problems(id):
         test=test,
         form=form,
     )
+
+
+class ProblemCreateView(CreateView):
+    model = models.Problem
+    form = forms.ProblemForm
+
+    redirect_view_name = ".index"
+
+    def other_data(self, **kwargs):
+        return {
+            "test_id": kwargs.get("test_id"),
+        }
+
+
+bp.add_url_rule(
+    "/<int:test_id>/problems/create/",
+    view_func=ProblemCreateView.as_view("create_problem"),
+)
