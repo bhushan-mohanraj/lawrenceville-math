@@ -49,7 +49,7 @@ class EventCreateView(CreateView):
     redirect_name = ".index"
 
 
-bp.add_url_rule('/create/', view_func=EventCreateView.as_view('create'))
+bp.add_url_rule("/create/", view_func=EventCreateView.as_view("create"))
 
 
 @bp.route("/<int:id>/update/", methods=("GET", "POST"))
