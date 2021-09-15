@@ -48,7 +48,3 @@ def index():
         tryouts=tryouts,
         practices=practices,
     )
-
-
-
-
