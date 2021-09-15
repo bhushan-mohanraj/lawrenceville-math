@@ -37,13 +37,7 @@ class CreateView(CRUDBaseView):
         if request.method == "POST" and form_object.validate():
             model_object = self.model()
 
-            for field in form_object:
-                if field.name in self.model.__table__.columns.keys():
-                    setattr(
-                        model_object,
-                        field.name,
-                        field.data,
-                    )
+            form_object.populate_obj(model_object)
 
             models.db_session.add(model_object)
             models.db_session.commit()
