@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, url_for, redirect
+from flask import Blueprint, render_template, request, url_for, redirect, abort
 from flask.views import View
 
 from app import models
@@ -74,6 +74,9 @@ class UpdateView(CRUDBaseView):
 
     def dispatch_request(self, **kwargs):
         model_object = models.db_session.get(self.model, kwargs.get("id"))
+
+        if model_object is None:
+            abort(404)
 
         # Create the form from the request form, if it exists, or from the model.
         form_object = self.form(request.form, obj=model_object)
