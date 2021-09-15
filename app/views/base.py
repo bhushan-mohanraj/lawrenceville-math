@@ -17,8 +17,8 @@ class CRUDBaseView(View):
     The base class for CRUD views.
     """
 
-    model = None  # The SQLAlchemy model class.
-    form = None  # The WTForms form class, with form fields matching model columns.
+    model: type  # The SQLAlchemy model class.
+    form: type  # The WTForms form class, with form fields matching model columns.
 
     template_name: str  # The template name used for displaying objects or forms.
 
