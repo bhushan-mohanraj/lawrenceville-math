@@ -16,12 +16,14 @@
     {% endif %}
 </div>
 
-<ul class="list-group">
+{% if test.problems %}
     {% for problem in test.problems %}
-        <li class="list-group-item">
-            {{ problem.statement }}
-        </li>
+        <h2>Problem {{ loop.index }}</h2>
+
+        {{ problem.statement }}
     {% endfor %}
-</ul>
+{% else %}
+    <p>There are current no problems in this test.</p>
+{% endif %}
 
 {% endblock %}
