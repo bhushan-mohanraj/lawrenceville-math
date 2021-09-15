@@ -7,6 +7,12 @@ from app import models
 from app.decorators import staff_required
 
 
+__all__ = [
+    "CRUDBaseView",
+    "CreateView",
+]
+
+
 class CRUDBaseView(View, ABC):
     """
     The base class for views that create, read, update, or delete model objects.
