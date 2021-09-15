@@ -1,3 +1,4 @@
+from app.helpers import current_edt_datetime
 from app.models.base import *
 
 
@@ -30,3 +31,7 @@ class Event(Model):
         types.String(1000),
         doc="A link to details about the event, including the 'https://'.",
     )
+
+    @property
+    def old(self) -> bool:
+        return self.end < current_edt_datetime()
