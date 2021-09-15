@@ -57,16 +57,31 @@ register_crud_views(
 def problems(id):
     test = models.db_session.get(models.Test, id)
 
+    # The attempts made by the user for the problems.
+    attempts = []
+
     form = forms.AttemptForm()
 
     if not g.user.staff:
         if not test.active:
             return abort(404)
 
+        for problem in test.problems:
+            current_attempt = None
+
+            for attempt in problem.attempts:
+                if attempt.user_id == g.user.id:
+                    current_attempt = attempt
+
+                    break
+
+            attempts.append(current_attempt)
+
     return render_template(
         "tests/problems.html",
         test=test,
         form=form,
+        attempts=attempts,
     )
 
 
