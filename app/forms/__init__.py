@@ -13,4 +13,6 @@ from app.forms.events import (
 
 from app.forms.tests import (
     TestForm,
+    ProblemForm,
+    AttemptForm,
 )
