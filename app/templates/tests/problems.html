@@ -36,13 +36,13 @@
                 <b>Correct Answer:</b> {{ problem.answer }}
             </p>
         {% else %}
+            {% set attempt = attempts[loop.index0] %}
+
             {% if test.active %}
                 <form method="POST" action="{{ url_for('tests.attempt_problem', test_id=test.id, problem_id=problem.id ) }}">
                     {{ form.csrf_token }}
                     <div class="row mb-3">
                         <div class="col col-12 col-md-10">
-                            {% set attempt = attempts[loop.index0] %}
-
                             {% if attempt %}
                                 {{ form.answer(value=attempt.answer, class_="form-control") }}
                             {% else %}
@@ -59,7 +59,8 @@
             {% elif test.over %}
                 <p class="fs-5">
                     <b>Correct Answer:</b> {{ problem.answer }}
-                    <b>Your Answer:</b> {{ attempts[loop.index0].answer }}
+                    <br/>
+                    <b>Your Answer:</b> {{ attempt.answer if attempt else None }}
                 </p>
             {% endif %}
         {% endif %}
