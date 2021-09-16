@@ -189,19 +189,24 @@ def results(id):
     else:
         users = [g.user]
 
+    # Create a list of results for each user.
     for user in users:
         if not user.staff:
             results[user.email] = []
 
+    # Find the attempts made for each problem, and add the result to the list for the corresponding user.
     for problem in test.problems:
         for attempt in problem.attempts:
             if attempt.user in users:
                 results[attempt.user.email].append(1 if attempt.correct else 0)
 
-    # Sort results by score.
+    # Sort the results by score.
     results = {
         email: scores
-        for email, scores in sorted(results.items(), key=lambda item: -sum(item[1]))
+        for email, scores in sorted(
+            results.items(),
+            key=lambda item: -sum(item[1]),
+        )
     }
 
     return render_template(
