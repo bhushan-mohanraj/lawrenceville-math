@@ -197,8 +197,8 @@ def results(id):
 
     # Sort results by score.
     results = {
-        email: scores for email, scores
-        in sorted(results.items(), key=lambda item: -sum(item[1]))
+        email: scores
+        for email, scores in sorted(results.items(), key=lambda item: -sum(item[1]))
     }
 
     return render_template(
