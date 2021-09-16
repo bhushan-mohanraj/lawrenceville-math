@@ -65,18 +65,17 @@ def problems(id):
     # The attempts made by the user for the problems.
     attempts = []
 
-    if test.active:
-        for problem in test.problems:
-            # The attempt made by the user for the current problem.
-            current_attempt = None
+    for problem in test.problems:
+        # The attempt made by the user for the current problem.
+        current_attempt = None
 
-            for attempt in problem.attempts:
-                if attempt.user_id == g.user.id:
-                    current_attempt = attempt
+        for attempt in problem.attempts:
+            if attempt.user_id == g.user.id:
+                current_attempt = attempt
 
-                    break
+                break
 
-            attempts.append(current_attempt)
+        attempts.append(current_attempt)
 
     return render_template(
         "tests/problems.html",
