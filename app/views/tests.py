@@ -136,12 +136,14 @@ def attempt_problem(test_id, problem_id):
     test = models.db_session.get(models.Test, test_id)
     problem = models.db_session.get(models.Problem, problem_id)
 
+    # If the test is not active, do not allow the user to attempt it.
     if not test.active:
         return abort(404)
 
     form = forms.AttemptForm(request.form)
 
     if form.validate():
+        # The attempt made by the user for the problem.
         current_attempt = None
 
         for attempt in problem.attempts:
@@ -150,6 +152,7 @@ def attempt_problem(test_id, problem_id):
 
                 break
 
+        # Update the current attempt object if it exists, or create a new one.
         if current_attempt is None:
             new_attempt = models.Attempt(
                 user_id=g.user.id,
