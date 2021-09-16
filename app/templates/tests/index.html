@@ -33,9 +33,11 @@
             <ul>
                 <li><b>Start Date:</b> {{ macros.render_datetime(test.start) }}</li>
                 <li><b>End Date:</b> {{ macros.render_datetime(test.end) }}</li>
+
                 {% if g.user.staff or (test.active or test.over) %}
                     <li><b><a href="{{ url_for('tests.problems', id=test.id) }}">View Problems</a></b></li>
                 {% endif %}
+
                 {% if g.user.staff or test.over %}
                     <li><b><a href="{{ url_for('tests.results', id=test.id) }}">View Results</a></b></li>
                 {% endif %}
