@@ -21,7 +21,11 @@
                 <td>{{ email }}</td>
 
                 {% for i in range(length) %}
-                    <td>{{ scores[i] }}</td>
+                    {% if scores[i] == 1 %}
+                        <td><i class="bi-check-lg text-success"></i></td>
+                    {% else %}
+                        <td><i class="bi-x-lg text-danger"></i></td>
+                    {% endif %}
                 {% endfor %}
             </tr>
         {% endfor %}
