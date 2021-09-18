@@ -7,20 +7,6 @@ def create_db():
     models.Model.metadata.create_all(bind=models.db_engine)
 
 
-def create_users():
-    user = models.User(email="staff@staff.com", staff=True)
-    user.set_password("staff")
-
-    models.db_session.add(user)
-    models.db_session.commit()
-
-    user = models.User(email="user@user.com")
-    user.set_password("user")
-
-    models.db_session.add(user)
-    models.db_session.commit()
-
-
 def create_events():
     event = models.Event(
         name="Event",
