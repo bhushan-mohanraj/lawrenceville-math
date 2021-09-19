@@ -13,7 +13,6 @@ The internal website of the Lawrenceville Math Club.
 - Use Alembic for SQLAlchemy migrations.
 - Add `setup.py` for deployment.
 - Connect SQLAlchemy Column.default and WTForms Field.default in `model_form`.
-- Fix `current_edt_datetime` function (currently correct only if the server is in EDT).
 
 ## Environment Setup
 
