@@ -44,7 +44,7 @@ SCOPES = [
     "https://www.googleapis.com/auth/userinfo.profile",
 ]
 
-# Emails of staff members.
+# Emails of staff members (others can be added through the website).
 STAFF_EMAILS = [
     "bmohanraj24@lawrenceville.org",
 ]
