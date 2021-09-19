@@ -8,7 +8,7 @@ The internal website of the Lawrenceville Math Club.
 
 - Currently, when working with SQLAlchemy, use https://docs.sqlalchemy.org/en/14/tutorial/index.html.
 
-### To Do
+## To Do
 
 - Use Alembic for SQLAlchemy migrations.
 - Add `setup.py` for deployment.
