@@ -49,4 +49,4 @@ py -m black .
 
 ## Environment Variables
 
-In production, the `SECRET_KEY` environment variable should be set to a secure key (generated, for example, with the `secrets` module). The `DATABASE_URL` environment variable can also be set.
+The `DATABASE_URL` environment variable should be set to point to the database.
