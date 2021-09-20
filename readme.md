@@ -10,7 +10,6 @@ The internal website of the Lawrenceville Math Club.
 
 ## To Do
 
-- Use Alembic for SQLAlchemy migrations.
 - Add `setup.py` for deployment.
 - Connect SQLAlchemy Column.default and WTForms Field.default in `model_form`.
 
@@ -48,4 +47,5 @@ py -m black .
 
 ## Environment Variables
 
-The `DATABASE_URL` environment variable should be set to point to the database.
+- The `DATABASE_URL` environment variable should point to the database (including SQL driver).
+- The `sqlalchemy.url` variable in `alembic.ini` should be set to the value of `DATABASE_URL`.
