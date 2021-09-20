@@ -4,11 +4,14 @@ The internal website of the Lawrenceville Math Club.
 
 # Development (Python 3.9)
 
-## To Do
+## Notes
 
-- Add `setup.py` for deployment.
-- Connect SQLAlchemy Column.default and WTForms Field.default in `model_form`.
 - Currently, when working with SQLAlchemy, use https://docs.sqlalchemy.org/en/14/tutorial/index.html.
+
+### To Do
+
+- Connect SQLAlchemy Column.default and WTForms Field.default in `model_form`.
+- Add section to README explaining how to set up Google authentication in Google Cloud and then download the client secrets.
 
 ## Variables and Configuration
 
