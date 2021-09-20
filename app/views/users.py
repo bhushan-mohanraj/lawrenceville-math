@@ -123,7 +123,7 @@ def login_callback():
     if user:
         session["user_id"] = user.id
 
-        return redirect(url_for("main.index"))
+        return redirect(url_for("index"))
     else:
         user = models.User(
             email=email,
@@ -138,14 +138,14 @@ def login_callback():
 
         session["user_id"] = user.id
 
-        return redirect(url_for("main.index"))
+        return redirect(url_for("index"))
 
 
 @bp.route("/logout/")
 def logout():
     session.pop("user_id", None)
 
-    return redirect(url_for("main.index"))
+    return redirect(url_for("index"))
 
 
 @bp.route("/<int:id>/staff/")

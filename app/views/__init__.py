@@ -1,3 +1,5 @@
+from flask import render_template
+
 from app.views import (
     main,
     users,
@@ -18,3 +20,7 @@ def register_views(app):
 
     for blueprint in blueprints:
         app.register_blueprint(blueprint)
+
+    @app.route("/")
+    def index():
+        return render_template("index.html")
