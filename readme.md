@@ -15,6 +15,16 @@ The internal website of the Lawrenceville Math Club.
 - The `DATABASE_URL` environment variable should point to the database (including SQL driver).
 - The `sqlalchemy.url` variable in `alembic.ini` should be set to the value of `DATABASE_URL`.
 
+## Database Migrations
+
+To generate a revision, run the following command, where `NAME` is the name of the revision, such as `"create user model"`.
+
+```py -m alembic revision --autogenerate -m "NAME"```
+
+To upgrade the database (after every fetch), run the following command.
+
+```py -m alembic upgrade head```
+
 ## Environment Setup
 
 ### Windows
