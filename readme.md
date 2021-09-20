@@ -17,7 +17,7 @@ The internal website of the Lawrenceville Math Club.
 
 ## Database Migrations
 
-To generate a revision, run the following command, where `NAME` is the name of the revision, such as `"create user model"`. Take note of [the types of changes that alembic can detect](https://alembic.sqlalchemy.org/en/latest/autogenerate.html#what-does-autogenerate-detect-and-what-does-it-not-detect).
+To generate a revision, run the following command, where `NAME` is the name of the revision, such as "create user model". Take note of [the types of changes that alembic can detect](https://alembic.sqlalchemy.org/en/latest/autogenerate.html#what-does-autogenerate-detect-and-what-does-it-not-detect).
 
 ```py -m alembic revision --autogenerate -m "NAME"```
 
