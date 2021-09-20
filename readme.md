@@ -1,4 +1,4 @@
-# LMC
+# LVMath
 
 The internal website of the Lawrenceville Math Club.
 
