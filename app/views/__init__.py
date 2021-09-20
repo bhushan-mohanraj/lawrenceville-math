@@ -1,7 +1,6 @@
 from flask import render_template
 
 from app.views import (
-    main,
     users,
     events,
     tests,
@@ -12,7 +11,6 @@ def register_views(app):
     """Register the application views."""
 
     blueprints = [
-        main.bp,
         users.bp,
         events.bp,
         tests.bp,
