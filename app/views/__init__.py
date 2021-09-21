@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, request, redirect
 
 from app.views import (
     users,
@@ -18,6 +18,13 @@ def register_views(app):
 
     for blueprint in blueprints:
         app.register_blueprint(blueprint)
+
+    @app.before_request
+    def force_https():
+        if not request.is_secure:
+            url = request.url.replace("http://", "https://", 1)
+
+            return redirect(url), 301
 
     @app.route("/")
     def index():
