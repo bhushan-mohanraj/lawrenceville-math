@@ -18,6 +18,10 @@ from app.models.tests import (
     ProblemAttempt,
 )
 
+from app.models.challenges import (
+    Challenge,
+)
+
 
 def register_models(app):
     """Register the application models."""
