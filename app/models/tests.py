@@ -69,7 +69,7 @@ class ProblemAttempt(Model):
         nullable=False,
     )
 
-    user = relationship("User", backref="attempts")
+    user = relationship("User")
 
     answer = Column(
         types.Integer,
