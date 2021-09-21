@@ -1,6 +1,8 @@
 from app.helpers import current_edt_datetime
 from app.models.base import *
 
+from sqlalchemy.orm import relationship
+
 
 class Challenge(Model):
     statement = Column(
@@ -30,3 +32,28 @@ class Challenge(Model):
     @property
     def over(self) -> bool:
         return self.end < current_edt_datetime()
+
+
+class ChallengeAttempt(Model):
+    challenge_id = Column(
+        schema.ForeignKey("Challenge.id"),
+        nullable=False,
+    )
+
+    challenge = relationship("Challenge", backref="attempts")
+
+    user_id = Column(
+        schema.ForeignKey("User.id"),
+        nullable=False,
+    )
+
+    user = relationship("User")
+
+    answer = Column(
+        types.Integer,
+        nullable=False,
+    )
+
+    @property
+    def correct(self):
+        return self.answer == self.challenge.answer
