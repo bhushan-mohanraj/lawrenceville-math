@@ -8,13 +8,13 @@ class User(Model):
         nullable=False,
     )
 
-    name = Column(
-        types.String(1000),
-        nullable=False,
-    )
-
     staff = Column(
         types.Boolean,
         default=False,
+        nullable=False,
+    )
+
+    name = Column(
+        types.String(1000),
         nullable=False,
     )
