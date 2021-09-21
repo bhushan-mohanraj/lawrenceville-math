@@ -15,7 +15,7 @@ from app.models.events import (
 from app.models.tests import (
     Test,
     Problem,
-    Attempt,
+    ProblemAttempt,
 )
 
 

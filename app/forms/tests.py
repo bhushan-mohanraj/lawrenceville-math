@@ -9,7 +9,7 @@ ProblemForm = model_form(
     exclude_names=("test_id",),
 )
 
-AttemptForm = model_form(
-    models.Attempt,
+ProblemAttemptForm = model_form(
+    models.ProblemAttempt,
     exclude_names=("problem_id", "user_id"),
 )

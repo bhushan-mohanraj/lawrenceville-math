@@ -80,7 +80,7 @@ def problems(id):
     return render_template(
         "tests/problems.html",
         test=test,
-        form=forms.AttemptForm(),
+        form=forms.ProblemAttemptForm(),
         attempts=attempts,
     )
 
@@ -139,7 +139,7 @@ def attempt_problem(test_id, problem_id):
     if not test.active:
         return abort(404)
 
-    form = forms.AttemptForm(request.form)
+    form = forms.ProblemAttemptForm(request.form)
 
     if form.validate():
         # The attempt made by the user for the problem.
@@ -153,7 +153,7 @@ def attempt_problem(test_id, problem_id):
 
         # Update the current attempt object if it exists, or create a new one.
         if current_attempt is None:
-            new_attempt = models.Attempt(
+            new_attempt = models.ProblemAttempt(
                 user_id=g.user.id,
                 problem_id=problem_id,
                 answer=form.answer.data,

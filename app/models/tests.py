@@ -56,7 +56,7 @@ class Problem(Model):
     )
 
 
-class Attempt(Model):
+class ProblemAttempt(Model):
     problem_id = Column(
         schema.ForeignKey("Problem.id"),
         nullable=False,
