@@ -43,7 +43,10 @@ class Problem(Model):
         schema.ForeignKey("Test.id"),
     )
 
-    test = relationship("Test", backref="problems")
+    test = relationship(
+        "Test",
+        backref="problems",
+    )
 
     statement = Column(
         types.String(1000),
@@ -62,7 +65,10 @@ class ProblemAttempt(Model):
         nullable=False,
     )
 
-    problem = relationship("Problem", backref="attempts")
+    problem = relationship(
+        "Problem",
+        backref="attempts",
+    )
 
     user_id = Column(
         schema.ForeignKey("User.id"),

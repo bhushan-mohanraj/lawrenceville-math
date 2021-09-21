@@ -40,7 +40,10 @@ class ChallengeAttempt(Model):
         nullable=False,
     )
 
-    challenge = relationship("Challenge", backref="attempts")
+    challenge = relationship(
+        "Challenge",
+        backref="attempts",
+    )
 
     user_id = Column(
         schema.ForeignKey("User.id"),
