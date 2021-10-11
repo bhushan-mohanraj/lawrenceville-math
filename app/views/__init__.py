@@ -24,7 +24,7 @@ def register_views(app):
         if not request.is_secure:
             url = request.url.replace("http://", "https://", 1)
 
-            return redirect(url), 301
+            return redirect(url)
 
     @app.route("/")
     def index():
