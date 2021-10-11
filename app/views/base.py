@@ -13,35 +13,43 @@ __all__ = [
 ]
 
 
-class CRUDBaseView(View):
-    """
-    The base class for CRUD views.
-    """
+class CRUDView(View):
+    # The model and form classes used in the view.
+    model: type
+    form: type
 
-    model: type  # The SQLAlchemy model class.
-    form: type  # The WTForms form class, with form fields matching model columns.
+    # The Flask view to redirect to after the request.
+    redirect_name: str
 
-    template_name: str  # The template name used for displaying objects or forms.
-
-    redirect_view_name: str  # The view name to redirect to after processing.
-
-    def other_data(self, **kwargs) -> dict:
+    def model_object(self, **kwargs) -> models.Model:
         """
-        Returns a dictionary of other data (outside submitted forms) to include in creating or updating models.
+        Returns the model object to update or delete.
 
-        The dictionary keys should be column names and the values should be the desired column values.
+        The passed kwargs are the URL arguments.
+        """
 
-        The keyword arguments passed to this function are, by default, URL parameters from the view.
+        return models.db_session.get(
+            self.model,
+            kwargs.get("id"),
+        )
+
+    def data(self, **kwargs) -> dict:
+        """
+        Returns a dictionary of other data to include when creating or updating models (outside of form data).
+
+        The passed kwargs are the URL arguments.
         """
 
         return {}
 
 
-class CreateView(CRUDBaseView):
+class CreateView(CRUDView):
+    """
+    A view for creating a new model object.
+    """
+
     methods = ["GET", "POST"]
     decorators = [staff_required]
-
-    template_name = "form.html"  # Use the form template for rendering the create form.
 
     def dispatch_request(self, **kwargs):
         form_object = self.form(request.form)
@@ -51,73 +59,86 @@ class CreateView(CRUDBaseView):
 
             form_object.populate_obj(model_object)
 
-            for key, value in self.other_data(**kwargs).items():
+            for key, value in self.data(**kwargs).items():
                 setattr(model_object, key, value)
 
             models.db_session.add(model_object)
             models.db_session.commit()
 
-            return redirect(url_for(self.redirect_view_name))
+            return redirect(url_for(self.redirect_name))
 
         return render_template(
-            self.template_name,
+            "form.html",
             title="Create " + self.model.__name__,
             form=form_object,
         )
 
 
-class UpdateView(CRUDBaseView):
+class UpdateView(CRUDView):
+    """
+    A view for updating a model object.
+
+    Unless the "model_object" method is redefined,
+    the route for this view should contain the integer "id" parameter.
+    """
+
     methods = ["GET", "POST"]
     decorators = [staff_required]
 
-    template_name = "form.html"  # Use the form template for rendering the update form.
-
     def dispatch_request(self, **kwargs):
-        model_object = models.db_session.get(self.model, kwargs.get("id"))
+        model_object = self.model_object(**kwargs)
 
         if model_object is None:
             abort(404)
 
-        # Create the form from the request form, if it exists, or from the model.
+        # Create the form from the request, if nonempty, or from the model.
         form_object = self.form(request.form, obj=model_object)
 
         if request.method == "POST" and form_object.validate():
             form_object.populate_obj(model_object)
 
-            for key, value in self.other_data(**kwargs).items():
+            for key, value in self.data(**kwargs).items():
                 setattr(model_object, key, value)
 
             models.db_session.commit()
 
-            return redirect(url_for(self.redirect_view_name))
+            return redirect(url_for(self.redirect_name))
 
         return render_template(
-            self.template_name,
+            "form.html",
             title="Update " + self.model.__name__,
             form=form_object,
         )
 
 
-class DeleteView(CRUDBaseView):
-    methods = ["GET"]
+class DeleteView(CRUDView):
+    """
+    A view for deleting a model object.
 
-    # By default, only staff can delete objects.
+    Unless the "model_object" method is redefined,
+    the route for this view should contain the integer "id" parameter.
+    """
+
+    methods = ["GET"]
     decorators = [staff_required]
 
     def dispatch_request(self, **kwargs):
-        model_object = models.db_session.get(self.model, kwargs.get("id"))
+        model_object = self.model_object(**kwargs)
+
+        if model_object is None:
+            abort(404)
 
         models.db_session.delete(model_object)
         models.db_session.commit()
 
-        return redirect(url_for(self.redirect_view_name))
+        return redirect(url_for(self.redirect_name))
 
 
 def register_crud_views(
     blueprint: Blueprint,
     model_: type,
     form_: type,
-    redirect_view_name_: str,
+    redirect_name_: str,
     url_prefix: str = "",
     view_name_prefix: str = "",
 ):
@@ -137,18 +158,18 @@ def register_crud_views(
         model = model_
         form = form_
 
-        redirect_view_name = redirect_view_name_
+        redirect_name = redirect_name_
 
     class ModelUpdateView(UpdateView):
         model = model_
         form = form_
 
-        redirect_view_name = redirect_view_name_
+        redirect_name = redirect_name_
 
     class ModelDeleteView(DeleteView):
         model = model_
 
-        redirect_view_name = redirect_view_name_
+        redirect_name = redirect_name_
 
     blueprint.add_url_rule(
         url_prefix + "/create/",

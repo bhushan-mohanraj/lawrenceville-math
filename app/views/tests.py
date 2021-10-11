@@ -89,9 +89,9 @@ class ProblemCreateView(CreateView):
     model = models.Problem
     form = forms.ProblemForm
 
-    redirect_view_name = ".index"
+    redirect_name = ".index"
 
-    def other_data(self, **kwargs):
+    def data(self, **kwargs):
         return {
             "test_id": kwargs.get("test_id"),
         }
@@ -107,7 +107,7 @@ class ProblemUpdateView(UpdateView):
     model = models.Problem
     form = forms.ProblemForm
 
-    redirect_view_name = ".index"
+    redirect_name = ".index"
 
 
 bp.add_url_rule(
@@ -120,7 +120,7 @@ class ProblemDeleteView(DeleteView):
     model = models.Problem
     form = forms.ProblemForm
 
-    redirect_view_name = ".index"
+    redirect_name = ".index"
 
 
 bp.add_url_rule(
