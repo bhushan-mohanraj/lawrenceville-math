@@ -11,3 +11,7 @@ from app.forms.tests import (
     ProblemForm,
     ProblemAttemptForm,
 )
+
+from app.forms.users import (
+    UserForm,
+)
