@@ -11,5 +11,8 @@ ProblemForm = model_form(
 
 ProblemAttemptForm = model_form(
     models.ProblemAttempt,
-    exclude_names=("problem_id", "user_id"),
+    exclude_names=(
+        "problem_id",
+        "user_id",
+    ),
 )
