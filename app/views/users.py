@@ -20,8 +20,8 @@ from sqlalchemy import select
 
 import google_auth_oauthlib.flow
 
-from app import models
-from app.decorators import staff_required
+from app import models, forms
+from app.decorators import staff_required, user_required
 
 import json
 
@@ -162,3 +162,23 @@ def staff(id):
     models.db_session.commit()
 
     return redirect(url_for(".index"))
+
+
+@bp.route("/settings/", methods=["GET", "POST"])
+@user_required
+def settings():
+    form = forms.UserForm(request.form, obj=g.user)
+
+    if request.method == "POST" and form.validate():
+        g.user.name = form.name.data
+        g.user.house = form.house.data
+
+        models.db_session.commit()
+
+        return redirect(url_for("index"))
+
+    return render_template(
+        "form.html",
+        title="Update User",
+        form=form,
+    )
