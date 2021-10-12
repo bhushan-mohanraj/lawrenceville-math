@@ -18,3 +18,31 @@ class User(Model):
         types.String(1000),
         nullable=False,
     )
+
+    house = Column(
+        types.Enum(
+            # Lower
+            "thomas",
+            "davidson",
+            "perry ross",
+            "cromwell",
+            # Circle
+            "cleve",
+            "griswold",
+            "woodhull",
+            "dickinson",
+            "kennedy",
+            "hamill",
+            # Crescent
+            "kirby",
+            "carter",
+            "stephens",
+            "stanley",
+            "mcClellan",
+            # Upper
+            "upper",
+            "reynolds",
+            "mcPherson",
+            "kinnan",
+        ),
+    )
