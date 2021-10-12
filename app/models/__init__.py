@@ -20,6 +20,7 @@ from app.models.tests import (
 
 from app.models.challenges import (
     Challenge,
+    ChallengeAttempt,
 )
 
 
