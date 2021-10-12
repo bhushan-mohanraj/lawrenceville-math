@@ -9,6 +9,8 @@ from wtforms.csrf.session import SessionCSRF
 
 from sqlalchemy import inspect, types
 
+from app.helpers import title
+
 
 # The default date format returned by the HTML5 datetime field.
 DATETIME_LOCAL_FORMAT = "%Y-%m-%dT%H:%M"
@@ -50,7 +52,7 @@ def model_form(model, exclude_names=(), submit=True):
 
         # Any keyword arguments required for constructing the field.
         field_kwargs = {
-            "label": name.replace("_", " ").title(),
+            "label": title(name.replace("_", " ")),
             "validators": [],
         }
 
@@ -73,7 +75,7 @@ def model_form(model, exclude_names=(), submit=True):
             field_type = fields.SelectField
 
             field_kwargs["choices"] = [
-                (choice, choice.title()) for choice in column.type.enums
+                (choice, title(choice)) for choice in column.type.enums
             ]
 
         elif type(column.type) == types.DateTime:
